@@ -89,7 +89,7 @@ body.modal-open { overflow: hidden; }
 
 /* ── LOADER ────────────────────────────────────── */
 #loader {
-    position: fixed; inset: 0; background: var(--dark);
+    position: fixed; inset: 0; background: #0a0a0a;
     z-index: 10000; display: flex; align-items: center;
     justify-content: center; flex-direction: column; gap: 32px;
 }
@@ -238,7 +238,7 @@ body.light #nav.scrolled {
     font-size: .58rem; letter-spacing: 5px; text-transform: uppercase;
     color: var(--gray); margin-bottom: 16px;
 }
-.s-label::before { content: ''; width: 22px; height: 1px; background: var(--gray); flex-shrink: 0; }
+.s-label::before { display: none; }
 .s-title {
     font-family: var(--fh);
     font-size: clamp(3rem, 5.5vw, 5.2rem);
@@ -524,6 +524,10 @@ body.light #nav.scrolled {
 }
 .m-award::before { content: '★'; font-size: .65rem; }
 
+.m-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 28px; }
+.m-gallery img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; filter: brightness(.9); }
+.m-gallery-label { font-size: .54rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gray); margin-bottom: 10px; margin-top: 28px; }
+
 .m-video-wrap {
     margin-top: 32px;
 }
@@ -598,6 +602,13 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
     .pgrid { grid-template-columns: repeat(3, 1fr); }
     .modal-panel { grid-template-columns: 1fr 1.6fr; }
 }
+/* ── TOUCH DEVICES: cards always show title ─── */
+@media (hover: none) {
+    .pc-body { transform: translateY(0) !important; }
+    .pc-plat, .pc-role, .pc-tools, .pc-open { opacity: 1 !important; }
+    .pcard:hover .pc-img { transform: none; filter: brightness(.88) saturate(.8); }
+}
+
 @media (max-width: 900px) {
     #nav, #nav.scrolled { padding: 18px 28px; }
     .nav-links { display: none; }
@@ -752,16 +763,20 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
     <div class="ct-right">
         <p class="ct-sub">Open to new projects, collaborations, and opportunities in VFX compositing and 3D production worldwide.</p>
         <div class="ct-links">
+            <a href="mailto:jean27rubio@gmail.com" class="ct-link">
+                <span>Email · jean27rubio@gmail.com</span>
+                <span class="ct-link-arr">↗</span>
+            </a>
+            <a href="https://wa.me/573160555984" target="_blank" class="ct-link">
+                <span>WhatsApp · +57 316 055 5984</span>
+                <span class="ct-link-arr">↗</span>
+            </a>
             <a href="https://www.instagram.com/lokojeans" target="_blank" class="ct-link">
                 <span>Instagram · @lokojeans</span>
                 <span class="ct-link-arr">↗</span>
             </a>
             <a href="https://www.linkedin.com/in/jean-sebastian-rubio-mendez-3206801a2/" target="_blank" class="ct-link">
                 <span>LinkedIn · Jean Sebastián Rubio</span>
-                <span class="ct-link-arr">↗</span>
-            </a>
-            <a href="https://jeansebastian.myportfolio.com" target="_blank" class="ct-link">
-                <span>Adobe Portfolio</span>
                 <span class="ct-link-arr">↗</span>
             </a>
         </div>
@@ -899,6 +914,7 @@ const PROJECTS = [
         cat: 'film-tv', role: '3D Environment Artist',
         img: 'Villamizar.jpg', poster: 'Villamizar.jpg', video: null,
         award: 'Premio India Catalina 2023 · Mejor Dirección de Arte',
+        bts: ['villamizar-bts.jpg', 'villamizar-bts2.jpg'],
         tools: ['Blender', 'Maya', 'Photoshop'],
         description: 'Historical drama. Created foundational layout and blockouts for digital set extensions. Translated art direction into 3D space, focusing on scale, architecture, and continuity. The series won the Premio India Catalina 2023 for Best Art Direction.'
     },
@@ -907,6 +923,7 @@ const PROJECTS = [
         title: 'LA REINA DEL SUR 3', year: 2022, platform: 'Telemundo', studio: 'Stargate Studios',
         cat: 'film-tv', role: 'VFX Compositor',
         img: 'ReinaDelSur.jpg', poster: 'ReinaDelSur.jpg', video: null,
+        bts: ['reina-sur-bts.jpg'],
         tools: ['Nuke', 'Photoshop'],
         description: 'VFX compositing work on Season 3 of the hit Telemundo series La Reina del Sur. Responsible for shot compositing and integration of digital elements with live-action photography.'
     },
@@ -917,6 +934,7 @@ const PROJECTS = [
         cat: 'film-tv', role: '3D Environment Artist',
         img: 'ReinaDelFlow.jpg', poster: 'ReinaDelFlow.jpg', video: null,
         award: '5× Premios India Catalina 2022 · Mejor Actriz, Libreto, Música y más',
+        bts: ['reina-flow-bts.jpg'],
         tools: ['Blender', 'Maya', 'Photoshop'],
         description: 'Created a 3D stadium environment for digital crowd extensions. Focused on modeling the stadium structure while other departments handled crowd generation and final compositing. The series won 5 Premios India Catalina in 2022 including Best Actress, Best Screenplay, and Best Music Director. The franchise\'s Season 1 previously won the International Emmy Award for Best Telenovela — the first International Emmy won by a Colombian production.'
     },
@@ -925,6 +943,7 @@ const PROJECTS = [
         title: 'CLUB 57', year: 2021, platform: 'Nickelodeon', studio: 'Rainbow SpA / Stargate',
         cat: 'film-tv', role: '3D Generalist',
         img: 'Club57.jpg', poster: 'Club57.jpg', video: null,
+        bts: ['club57-bts.jpg'],
         award: 'PRODU Award · Best Youth Series 2021',
         tools: ['Blender', 'Maya', 'Photoshop', 'PFTRACK'],
         description: 'Contributed to Season 2 developing stylized environments for multiple musical sequences. "Cupido" music video: Built a fully CG circus environment. "Luna Para Ti": Designed background assets and 3D elements. "Eva": Provided assets and 3D tracking for a time-freeze visual effect inspired by Quicksilver sequences from X-Men. Season 2 won the PRODU Award for Best Youth Series 2021.'
@@ -1046,6 +1065,12 @@ function openModal(idx) {
         return html;
     })();
 
+    const btsHTML = p.bts && p.bts.length ? `
+        <div class="m-gallery-label">Behind The Scenes</div>
+        <div class="m-gallery">
+            ${p.bts.map(img => `<img src="${img}" loading="lazy" alt="BTS">`).join('')}
+        </div>` : '';
+
     mright.innerHTML = `
         <div class="m-eyebrow">${p.cat === 'advertising' ? 'Commercial' : 'Film &amp; TV'}</div>
         <h2 class="m-title">${p.title}</h2>
@@ -1071,6 +1096,7 @@ function openModal(idx) {
         <div class="m-tools">${p.tools.map(t => `<span class="m-tool">${t}</span>`).join('')}</div>
         <div class="m-desc-label">Overview</div>
         <p class="m-desc">${p.description}</p>
+        ${btsHTML}
         ${videoHTML}
     `;
 
