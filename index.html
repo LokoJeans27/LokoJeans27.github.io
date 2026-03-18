@@ -163,9 +163,9 @@ body.light #nav.scrolled {
 }
 .h-img {
     position: absolute; inset: -8%;
-    background: url('hero-s2.jpg') center 30%/cover no-repeat;
+    background: url('hero-vfx.jpg') center center/cover no-repeat;
     will-change: transform;
-    filter: grayscale(100%) brightness(.55);
+    filter: brightness(.45);
 }
 .h-img-ov {
     position: absolute; inset: 0;
@@ -266,7 +266,7 @@ body.light #nav.scrolled {
 }
 .ab-tag {
     position: absolute; top: 20px; left: 20px;
-    background: var(--dark); color: #fff;
+    background: var(--dark); color: var(--bg);
     font-size: .52rem; letter-spacing: 2.5px; text-transform: uppercase;
     padding: 7px 13px;
 }
@@ -279,7 +279,7 @@ body.light #nav.scrolled {
 }
 
 .ab-text {}
-.ab-p { font-size: .91rem; line-height: 2; color: #454545; }
+.ab-p { font-size: .91rem; line-height: 2; color: var(--gray); }
 .ab-p + .ab-p { margin-top: 20px; }
 .ab-p strong { color: var(--dark); font-weight: 500; }
 
@@ -443,7 +443,7 @@ body.light #nav.scrolled {
 }
 .modal-left {
     position: relative; overflow: hidden;
-    background: var(--dark2);
+    background: var(--bg3);
     min-height: 480px;
 }
 .modal-poster {
@@ -510,11 +510,19 @@ body.light #nav.scrolled {
 .m-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
 .m-tool {
     font-size: .55rem; letter-spacing: 1.5px; text-transform: uppercase;
-    padding: 5px 12px; background: var(--dark); color: #fff;
+    padding: 5px 12px; background: var(--dark); color: var(--bg);
 }
 
 .m-desc-label { font-size: .54rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gray); margin-bottom: 12px; }
-.m-desc { font-size: .86rem; line-height: 2; color: #4a4a4a; }
+.m-desc { font-size: .86rem; line-height: 2; color: var(--gray); }
+
+.m-award {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,215,0,.08); border: 1px solid rgba(255,215,0,.25);
+    color: rgba(255,215,0,.85); font-size: .5rem; letter-spacing: 2.5px;
+    text-transform: uppercase; padding: 6px 14px; margin-bottom: 28px;
+}
+.m-award::before { content: '★'; font-size: .65rem; }
 
 .m-video-wrap {
     margin-top: 32px;
@@ -527,7 +535,7 @@ body.light #nav.scrolled {
 .m-video + .m-video { margin-top: 12px; }
 
 /* ── STATS ─────────────────────────────────────── */
-#stats { background: var(--dark); padding: 96px 64px; }
+#stats { background: #111; padding: 96px 64px; }
 .stats-grid {
     display: grid; grid-template-columns: repeat(4, 1fr);
     border-left: 1px solid rgba(255,255,255,.07);
@@ -580,7 +588,7 @@ body.light #nav.scrolled {
 
 /* ── FOOTER ────────────────────────────────────── */
 footer {
-    background: var(--dark2); padding: 28px 64px;
+    background: #0a0a0a; padding: 28px 64px;
     display: flex; justify-content: space-between; align-items: center;
 }
 footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5px; text-transform: uppercase; }
@@ -684,15 +692,15 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
 <!-- ══ ABOUT ══════════════════════════════════════ -->
 <section id="about">
     <div class="ab-visual">
-        <img src="jean-sebastian.png" alt="Jean Sebastián Rubio" class="ab-img" style="object-position: center top;">
+        <img src="jean-on-set.png" alt="Jean Sebastián Rubio" class="ab-img" style="object-position: center top;">
         <div class="ab-tag">VFX Compositor</div>
         <div class="ab-cap">Bogotá, Colombia</div>
     </div>
     <div class="ab-text">
         <span class="s-label">About</span>
         <h2 class="s-title" style="margin-bottom:40px">VFX<br>COMPOSITOR<br>&amp; 3D ARTIST</h2>
-        <p class="ab-p">VFX Compositor with extensive experience across <strong>feature films, streaming series, and commercial productions</strong>. Led compositing on major productions including <strong>Medusa (Netflix, 2025)</strong>, <strong>Pancho Villa: El Centauro del Norte (Disney+)</strong>, and <strong>Outer Range 2 (Prime Video)</strong>.</p>
-        <p class="ab-p">Specializing in seamless CG integration, environment design, and FX simulation. From underwater yacht destruction sequences and full‑CG creature work to dystopian Unreal Engine city environments — bringing complex visual effects to life with photorealistic precision.</p>
+        <p class="ab-p">VFX Compositor with extensive experience across <strong>feature films, streaming series, and commercial productions</strong>. Led compositing on <strong>Delirio (Netflix, 2025)</strong> — pre-nominated for the <strong>42nd Premios India Catalina</strong> — and <strong>Medusa (Netflix, 2025)</strong>, <strong>Pancho Villa: El Centauro del Norte (Disney+)</strong>, and <strong>Outer Range 2 (Prime Video)</strong>.</p>
+        <p class="ab-p">Specializing in seamless CG integration, environment design, and FX simulation. Credits include award-winning productions: <strong>La Reina del Flow 2</strong> (5× India Catalina winner 2022), <strong>Club 57</strong> (PRODU Award Best Youth Series 2021), and <strong>Las Villamizar</strong> (India Catalina winner 2023).</p>
         <p class="ab-p">Currently expanding into large‑scale FX including <strong>Houdini‑based explosion simulations</strong>, fracturing, and fluid dynamics.</p>
         <p class="tools-label">Tools &amp; Software</p>
         <div class="tools-wrap">
@@ -728,7 +736,7 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
 <!-- ══ STATS ══════════════════════════════════════ -->
 <div id="stats">
     <div class="stats-grid">
-        <div class="stat-item"><div class="stat-n">13+</div><div class="stat-l">Productions</div></div>
+        <div class="stat-item"><div class="stat-n">14+</div><div class="stat-l">Productions</div></div>
         <div class="stat-item"><div class="stat-n">4</div><div class="stat-l">Major Platforms</div></div>
         <div class="stat-item"><div class="stat-n">5+</div><div class="stat-l">Years Experience</div></div>
         <div class="stat-item"><div class="stat-n">9</div><div class="stat-l">Tools Mastered</div></div>
@@ -789,8 +797,9 @@ const PROJECTS = [
         img: 'medusa.jpg',
         poster: 'medusa.jpg',
         video: null,
+        award: 'Pre-nominado · 42° Premios India Catalina 2026',
         tools: ['Nuke', 'Houdini', 'After Effects'],
-        description: 'Oversaw compositing workflow from initial layout through final delivery. Integrated 3D medusa creatures into the series intro. Coordinated with FX, lighting, and editorial teams. Simulated underwater yacht destruction including fracture dynamics and water interaction. Developed water simulations and executed yacht explosion sequences using Houdini.'
+        description: 'Oversaw compositing workflow from initial layout through final delivery. Integrated 3D medusa creatures into the series intro. Coordinated with FX, lighting, and editorial teams. Simulated underwater yacht destruction including fracture dynamics and water interaction. Developed water simulations and executed yacht explosion sequences using Houdini. Pre-nominated for the 42nd Premios India Catalina. Renewed for Season 2 by Netflix.'
     },
     {
         id: 'outer-range',
@@ -805,13 +814,13 @@ const PROJECTS = [
     },
     {
         id: 'pancho-villa',
-        title: 'PANCHO VILLA', year: 2023, platform: 'Disney+', studio: 'Stargate Studios',
+        title: 'PANCHO VILLA', year: 2023, platform: 'Disney+ / Star+', studio: 'Stargate Studios',
         cat: 'film-tv', role: 'VFX Supervisor – Compositing & 3D',
         img: 'CDN.jpg',
         poster: 'CDN.jpg',
         video: null,
         tools: ['Nuke', 'Blender', 'Maya', 'Unreal Engine', 'PFTRACK'],
-        description: 'Supervised compositing and 3D departments on this historical production. Transformed a museum train into a fully animated CG asset. Oversaw shot planning and creative direction. Managed chroma keying and environment replacements. Executed a skull exposure effect using object tracking to simulate a gunshot wound.'
+        description: 'Supervised compositing and 3D departments on this historical Disney+ production about Pancho Villa, the iconic Mexican revolutionary. Transformed a museum train into a fully animated CG asset. Oversaw shot planning and creative direction. Managed chroma keying and environment replacements. Executed a skull exposure effect using object tracking to simulate a gunshot wound.'
     },
     {
         id: 'boy-kills-world',
@@ -839,9 +848,9 @@ const PROJECTS = [
         cat: 'film-tv', role: '3D Team Lead → VFX Compositor',
         img: 'UNVIAJEALCENTRODELATIERRA.jpg',
         poster: 'UNVIAJEALCENTRODELATIERRA.jpg',
-        video: null,
+        video: 'viaje-compo.mov',
         tools: ['Nuke', 'Blender', 'Maya', 'Unreal Engine', 'After Effects'],
-        description: 'Began overseeing 3D environment construction and asset supervision, then shifted to compositing as the project evolved. Composited full-CG dragons with fire effects. Developed a completely 3D mechanical chamber with integrated lighting. Replaced reflective astronaut helmets with animated 3D models.'
+        description: 'Colombian Disney+ production starring Margarita Rosa de Francisco. Began overseeing 3D environment construction and asset supervision, then shifted to compositing as the project evolved. Composited full-CG dragons with fire effects. Developed a completely 3D mechanical chamber with integrated lighting. Replaced reflective astronaut helmets with animated 3D models.'
     },
     {
         id: 'club-57',
@@ -850,18 +859,20 @@ const PROJECTS = [
         img: 'Club57.jpg',
         poster: 'Club57.jpg',
         video: null,
+        award: 'PRODU Award · Best Youth Series 2021',
         tools: ['Blender', 'Maya', 'Photoshop', 'PFTRACK'],
-        description: 'Contributed to Season 2 developing stylized environments for multiple musical sequences. "Cupido" music video: Built a fully CG circus environment. "Luna Para Ti": Designed background assets and 3D elements. "Eva": Provided assets and 3D tracking for a time-freeze visual effect inspired by Quicksilver sequences from X-Men.'
+        description: 'Contributed to Season 2 developing stylized environments for multiple musical sequences. "Cupido" music video: Built a fully CG circus environment. "Luna Para Ti": Designed background assets and 3D elements. "Eva": Provided assets and 3D tracking for a time-freeze visual effect inspired by Quicksilver sequences from X-Men. Season 2 won the PRODU Award for Best Youth Series 2021.'
     },
     {
         id: 'reina-flow',
-        title: 'LA REINA DEL FLOW 2', year: 2021, platform: 'Caracol TV', studio: 'Stargate Studios',
+        title: 'LA REINA DEL FLOW 2', year: 2021, platform: 'Caracol TV / Netflix', studio: 'Stargate Studios',
         cat: 'film-tv', role: '3D Environment Artist',
         img: 'ReinaDelFlow.jpg',
         poster: 'ReinaDelFlow.jpg',
         video: null,
+        award: '5× Premios India Catalina 2022 · Mejor Actriz, Libreto, Música y más',
         tools: ['Blender', 'Maya', 'Photoshop'],
-        description: 'Created a 3D stadium environment for digital crowd extensions. Focused on modeling the stadium structure while other departments handled crowd generation and final compositing.'
+        description: 'Created a 3D stadium environment for digital crowd extensions. Focused on modeling the stadium structure while other departments handled crowd generation and final compositing. The series won 5 Premios India Catalina in 2022 including Best Actress, Best Screenplay, and Best Music Director. The franchise\'s Season 1 previously won the International Emmy Award for Best Telenovela — the first International Emmy won by a Colombian production.'
     },
     {
         id: 'las-villamizar',
@@ -870,8 +881,9 @@ const PROJECTS = [
         img: 'Villamizar.jpg',
         poster: 'Villamizar.jpg',
         video: null,
+        award: 'Premio India Catalina 2023 · Mejor Dirección de Arte',
         tools: ['Blender', 'Maya', 'Photoshop'],
-        description: 'Historical drama. Created foundational layout and blockouts for digital set extensions. Translated art direction into 3D space, focusing on scale, architecture, and continuity.'
+        description: 'Historical drama. Created foundational layout and blockouts for digital set extensions. Translated art direction into 3D space, focusing on scale, architecture, and continuity. The series won the Premio India Catalina 2023 for Best Art Direction.'
     },
     {
         id: 'reina-sur',
@@ -882,6 +894,18 @@ const PROJECTS = [
         video: null,
         tools: ['Nuke', 'Photoshop'],
         description: 'VFX compositing work on Season 3 of the hit Telemundo series La Reina del Sur. Responsible for shot compositing and integration of digital elements with live-action photography.'
+    },
+    {
+        id: 'delirio',
+        title: 'DELIRIO', year: 2025, platform: 'Netflix', studio: 'TIS Productions',
+        cat: 'film-tv', role: 'Lead Compositor',
+        img: 'delirio-poster.jpg',
+        poster: 'delirio-poster.jpg',
+        video: 'delirio-1.mp4',
+        video2: 'delirio-2.mp4',
+        award: 'Pre-nominado · 42° Premios India Catalina 2026 · Top 10 Netflix Global',
+        tools: ['Nuke', 'After Effects', 'Photoshop'],
+        description: 'Lead Compositor on this Netflix adaptation of Laura Restrepo\'s acclaimed 2004 novel. Psychological thriller set in 1980s Bogotá during the rise of drug trafficking, following a university professor who returns home to find his wife in a state of delirium. The series reached #6 on Netflix\'s Global Top 10 for non-English language series and was pre-nominated for the 42nd Premios India Catalina in categories including Best Fiction Series, Best Direction, Best Screenplay, and Best Cinematography.'
     },
     {
         id: 'la-virginia',
@@ -1038,6 +1062,7 @@ function openModal(idx) {
     mright.innerHTML = `
         <div class="m-eyebrow">${p.cat === 'advertising' ? 'Commercial' : 'Film &amp; TV'}</div>
         <h2 class="m-title">${p.title}</h2>
+        ${p.award ? `<div class="m-award">${p.award}</div>` : ''}
         <div class="m-meta">
             <div class="m-meta-item">
                 <div class="m-meta-label">Platform</div>
