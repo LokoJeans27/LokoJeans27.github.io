@@ -738,7 +738,7 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
     <div class="stats-grid">
         <div class="stat-item"><div class="stat-n">14+</div><div class="stat-l">Productions</div></div>
         <div class="stat-item"><div class="stat-n">4</div><div class="stat-l">Major Platforms</div></div>
-        <div class="stat-item"><div class="stat-n">5+</div><div class="stat-l">Years Experience</div></div>
+        <div class="stat-item"><div class="stat-n">8+</div><div class="stat-l">Years Experience</div></div>
         <div class="stat-item"><div class="stat-n">9</div><div class="stat-l">Tools Mastered</div></div>
     </div>
 </div>
@@ -790,55 +790,73 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 /* ══ PROJECT DATA ════════════════════════════════ */
 const PROJECTS = [
+    /* ── 2025 ── */
+    {
+        id: 'delirio',
+        title: 'DELIRIO', year: 2025, platform: 'Netflix', studio: 'TIS Productions',
+        cat: 'film-tv', role: 'Lead Compositor',
+        img: 'delirio-poster.jpg', poster: 'delirio-poster.jpg',
+        video: 'delirio-1.mp4', video2: 'delirio-2.mp4',
+        award: 'Pre-nominado · 42° Premios India Catalina 2026 · Top 10 Netflix Global',
+        tools: ['Nuke', 'After Effects', 'Photoshop'],
+        description: 'Lead Compositor on this Netflix adaptation of Laura Restrepo\'s acclaimed 2004 novel. Psychological thriller set in 1980s Bogotá during the rise of drug trafficking, following a university professor who returns home to find his wife in a state of delirium. The series reached #6 on Netflix\'s Global Top 10 for non-English language series and was pre-nominated for the 42nd Premios India Catalina in categories including Best Fiction Series, Best Direction, Best Screenplay, and Best Cinematography.'
+    },
     {
         id: 'medusa',
         title: 'MEDUSA', year: 2025, platform: 'Netflix', studio: 'TIS Studios',
         cat: 'film-tv', role: 'Lead Compositor & FX Artist',
-        img: 'medusa.jpg',
-        poster: 'medusa.jpg',
-        video: null,
+        img: 'medusa.jpg', poster: 'medusa.jpg',
+        video: 'medusa-explo.mp4', video2: 'medusa-underwater.mp4',
         award: 'Pre-nominado · 42° Premios India Catalina 2026',
         tools: ['Nuke', 'Houdini', 'After Effects'],
         description: 'Oversaw compositing workflow from initial layout through final delivery. Integrated 3D medusa creatures into the series intro. Coordinated with FX, lighting, and editorial teams. Simulated underwater yacht destruction including fracture dynamics and water interaction. Developed water simulations and executed yacht explosion sequences using Houdini. Pre-nominated for the 42nd Premios India Catalina. Renewed for Season 2 by Netflix.'
     },
     {
+        id: 'la-virginia',
+        title: 'LA VIRGINIA', year: 2025, platform: 'Commercial', studio: 'TIS Productions',
+        cat: 'advertising', role: 'VFX Compositor',
+        img: 'virginia-poster.jpg', poster: 'virginia-poster.jpg',
+        video: 'virginia-reel.mp4',
+        video2: 'virginia-070.mp4',
+        video3: 'virginia-090.mp4',
+        video4: 'virginia-100.mp4',
+        video5: 'virginia-170.mp4',
+        video6: 'virginia-190.mp4',
+        tools: ['Nuke', 'Photoshop'],
+        description: 'Full-CG commercial featuring animated "Coates," a stylized family of tea mascots with Disney-inspired design. Work included render pass compositing and look development support with light wraps, glows, and atmospheric effects.'
+    },
+    /* ── 2024 ── */
+    {
         id: 'outer-range',
         title: 'OUTER RANGE 2', year: 2024, platform: 'Prime Video', studio: 'OLLIN VFX',
         cat: 'film-tv', role: 'VFX Compositor',
-        img: 'OUTERANGE.jpg',
-        poster: 'OUTERANGE.jpg',
-        video: 'outerrange-breakdown.mp4',
-        video2: 'outerrange-chroma.mp4',
+        img: 'OUTERANGE.jpg', poster: 'OUTERANGE.jpg',
+        video: 'outerrange-breakdown.mp4', video2: 'outerrange-chroma.mp4',
         tools: ['Nuke', 'Photoshop'],
         description: 'Contributed to the second season as a compositor handling integration of CGI with live-action footage. Key responsibilities: Matte painting integration — placed 3D-rendered mountain environments into background plates. Vehicle greenscreen compositing — keyed interior car shots, composited road/environment elements for driving sequences. Cleanup work — removed rigs, reflections, and unwanted elements.'
-    },
-    {
-        id: 'pancho-villa',
-        title: 'PANCHO VILLA', year: 2023, platform: 'Disney+ / Star+', studio: 'Stargate Studios',
-        cat: 'film-tv', role: 'VFX Supervisor – Compositing & 3D',
-        img: 'CDN.jpg',
-        poster: 'CDN.jpg',
-        video: 'pancho-vfx.mp4',
-        tools: ['Nuke', 'Blender', 'Maya', 'Unreal Engine', 'PFTRACK'],
-        description: 'Supervised compositing and 3D departments on this historical Disney+ production about Pancho Villa, the iconic Mexican revolutionary. Transformed a museum train into a fully animated CG asset. Oversaw shot planning and creative direction. Managed chroma keying and environment replacements. Executed a skull exposure effect using object tracking to simulate a gunshot wound.'
     },
     {
         id: 'boy-kills-world',
         title: 'BOY KILLS WORLD', year: 2024, platform: 'Feature Film (Lionsgate)', studio: 'VFX Production',
         cat: 'film-tv', role: 'VFX Compositor',
-        img: 'BKW.jpg',
-        poster: 'BKW.jpg',
-        video: 'bkw-vfx.mp4',
+        img: 'BKW.jpg', poster: 'BKW.jpg', video: 'bkw-vfx.mp4',
         tools: ['Nuke', 'Photoshop'],
         description: 'VFX compositing work on the international action feature film Boy Kills World (2024), starring Bill Skarsgård. Responsible for integrating visual effects shots, maintaining continuity between practical and digital elements throughout the production.'
+    },
+    /* ── 2023 ── */
+    {
+        id: 'pancho-villa',
+        title: 'PANCHO VILLA', year: 2023, platform: 'Disney+ / Star+', studio: 'Stargate Studios',
+        cat: 'film-tv', role: 'VFX Supervisor – Compositing & 3D',
+        img: 'CDN.jpg', poster: 'CDN.jpg', video: 'pancho-vfx.mp4', video2: 'pancho-VCDN_101_104_35_2_VFX.mp4', video3: 'pancho-VCDN_101_105_30_12_VFX_BLUE_2.mp4',
+        tools: ['Nuke', 'Blender', 'Maya', 'Unreal Engine', 'PFTRACK'],
+        description: 'Supervised compositing and 3D departments on this historical Disney+ production about Pancho Villa, the iconic Mexican revolutionary. Transformed a museum train into a fully animated CG asset. Oversaw shot planning and creative direction. Managed chroma keying and environment replacements. Executed a skull exposure effect using object tracking to simulate a gunshot wound.'
     },
     {
         id: 'los-iniciados',
         title: 'LOS INICIADOS', year: 2023, platform: 'Feature Film', studio: 'Stargate Studios',
         cat: 'film-tv', role: '3D Team Lead',
-        img: 'LICD.jpg',
-        poster: 'LICD.jpg',
-        video: 'iniciados-city.mp4',
+        img: 'LICD.jpg', poster: 'LICD.jpg', video: 'iniciados-city.mp4',
         tools: ['Unreal Engine', 'Blender', 'Maya', 'Nuke', 'Substance Painter'],
         description: 'Led the 3D department in creating a dystopian city environment that extended beyond the physical set. Technical supervision of performance optimization, level streaming, and asset management. Environment assembly and lighting in Unreal Engine. Hybrid environment combining physical set with full 3D recreation.'
     },
@@ -846,41 +864,40 @@ const PROJECTS = [
         id: 'viaje-tierra',
         title: 'UN VIAJE AL CENTRO DE LA TIERRA', year: 2023, platform: 'Disney+', studio: 'Stargate Studios',
         cat: 'film-tv', role: '3D Team Lead → VFX Compositor',
-        img: 'UNVIAJEALCENTRODELATIERRA.jpg',
-        poster: 'UNVIAJEALCENTRODELATIERRA.jpg',
-        video: 'viaje-compo.mp4',
+        img: 'UNVIAJEALCENTRODELATIERRA.jpg', poster: 'UNVIAJEALCENTRODELATIERRA.jpg',
+        video: 'viaje-compo.mp4', video2: 'viaje-jv.mp4', video3: 'viaje-dragon.mp4',
         tools: ['Nuke', 'Blender', 'Maya', 'Unreal Engine', 'After Effects'],
         description: 'Colombian Disney+ production starring Margarita Rosa de Francisco. Began overseeing 3D environment construction and asset supervision, then shifted to compositing as the project evolved. Composited full-CG dragons with fire effects. Developed a completely 3D mechanical chamber with integrated lighting. Replaced reflective astronaut helmets with animated 3D models.'
     },
     {
-        id: 'club-57',
-        title: 'CLUB 57', year: 2021, platform: 'Nickelodeon', studio: 'Rainbow SpA / Stargate',
-        cat: 'film-tv', role: '3D Generalist',
-        img: 'Club57.jpg',
-        poster: 'Club57.jpg',
-        video: null,
-        award: 'PRODU Award · Best Youth Series 2021',
-        tools: ['Blender', 'Maya', 'Photoshop', 'PFTRACK'],
-        description: 'Contributed to Season 2 developing stylized environments for multiple musical sequences. "Cupido" music video: Built a fully CG circus environment. "Luna Para Ti": Designed background assets and 3D elements. "Eva": Provided assets and 3D tracking for a time-freeze visual effect inspired by Quicksilver sequences from X-Men. Season 2 won the PRODU Award for Best Youth Series 2021.'
+        id: 'dux',
+        title: 'DUX', year: 2023, platform: 'Commercial', studio: 'Efecto Perfecto',
+        cat: 'advertising', role: 'Compositing Lead & Lookdev Supervisor',
+        img: 'dux-poster.jpg', poster: 'dux-poster.jpg',
+        video: 'dux.mp4',
+        video2: 'efecto-DuxAll_1.mp4',
+        tools: ['Nuke', 'Photoshop', 'After Effects', 'Blender'],
+        description: 'Commercial featuring stylized 3D compositing. Led the compositing phase and visual look development, maintaining a toon-lined aesthetic while managing volumetric elements and depth across shots. Render pass integration (diffuse, specular, volume, line art) achieving a cohesive cartoon-styled world.'
     },
     {
-        id: 'reina-flow',
-        title: 'LA REINA DEL FLOW 2', year: 2021, platform: 'Caracol TV / Netflix', studio: 'Stargate Studios',
-        cat: 'film-tv', role: '3D Environment Artist',
-        img: 'ReinaDelFlow.jpg',
-        poster: 'ReinaDelFlow.jpg',
-        video: null,
-        award: '5× Premios India Catalina 2022 · Mejor Actriz, Libreto, Música y más',
-        tools: ['Blender', 'Maya', 'Photoshop'],
-        description: 'Created a 3D stadium environment for digital crowd extensions. Focused on modeling the stadium structure while other departments handled crowd generation and final compositing. The series won 5 Premios India Catalina in 2022 including Best Actress, Best Screenplay, and Best Music Director. The franchise\'s Season 1 previously won the International Emmy Award for Best Telenovela — the first International Emmy won by a Colombian production.'
+        id: 'naf-naf',
+        title: 'NAF NAF & BRETAÑA', year: 2023, platform: 'Commercial', studio: 'Efecto Perfecto',
+        cat: 'advertising', role: 'Compositing Lead & On-Set Supervisor',
+        img: 'nafnaf-poster.jpg', poster: 'nafnaf-poster.jpg',
+        video: 'nafnaf.mp4',
+        video2: 'efecto-NAF_NAF1.mp4',
+        video3: 'efecto-NAF_NAF1_2.mp4',
+        video4: 'efecto-NAF_NAF1_3.mp4',
+        video5: 'efecto-NAF_NAFparte_1.mp4',
+        tools: ['Nuke', 'Photoshop', 'After Effects'],
+        description: 'Commercial merging live-action and CG elements, featuring real actresses filmed in a luxury vehicle on set, seamlessly placed in a stylized "Naf Naf world." Led compositing team integrating live-action with CG environment. Supervised on-set VFX operations. Participated in 3D environment conceptualization.'
     },
+    /* ── 2022 ── */
     {
         id: 'las-villamizar',
         title: 'LAS VILLAMIZAR', year: 2022, platform: 'Caracol Televisión', studio: 'Stargate Studios',
         cat: 'film-tv', role: '3D Environment Artist',
-        img: 'Villamizar.jpg',
-        poster: 'Villamizar.jpg',
-        video: null,
+        img: 'Villamizar.jpg', poster: 'Villamizar.jpg', video: null,
         award: 'Premio India Catalina 2023 · Mejor Dirección de Arte',
         tools: ['Blender', 'Maya', 'Photoshop'],
         description: 'Historical drama. Created foundational layout and blockouts for digital set extensions. Translated art direction into 3D space, focusing on scale, architecture, and continuity. The series won the Premio India Catalina 2023 for Best Art Direction.'
@@ -889,53 +906,28 @@ const PROJECTS = [
         id: 'reina-sur',
         title: 'LA REINA DEL SUR 3', year: 2022, platform: 'Telemundo', studio: 'Stargate Studios',
         cat: 'film-tv', role: 'VFX Compositor',
-        img: 'ReinaDelSur.jpg',
-        poster: 'ReinaDelSur.jpg',
-        video: null,
+        img: 'ReinaDelSur.jpg', poster: 'ReinaDelSur.jpg', video: null,
         tools: ['Nuke', 'Photoshop'],
         description: 'VFX compositing work on Season 3 of the hit Telemundo series La Reina del Sur. Responsible for shot compositing and integration of digital elements with live-action photography.'
     },
+    /* ── 2021 ── */
     {
-        id: 'delirio',
-        title: 'DELIRIO', year: 2025, platform: 'Netflix', studio: 'TIS Productions',
-        cat: 'film-tv', role: 'Lead Compositor',
-        img: 'delirio-poster.jpg',
-        poster: 'delirio-poster.jpg',
-        video: 'delirio-1.mp4',
-        video2: 'delirio-2.mp4',
-        award: 'Pre-nominado · 42° Premios India Catalina 2026 · Top 10 Netflix Global',
-        tools: ['Nuke', 'After Effects', 'Photoshop'],
-        description: 'Lead Compositor on this Netflix adaptation of Laura Restrepo\'s acclaimed 2004 novel. Psychological thriller set in 1980s Bogotá during the rise of drug trafficking, following a university professor who returns home to find his wife in a state of delirium. The series reached #6 on Netflix\'s Global Top 10 for non-English language series and was pre-nominated for the 42nd Premios India Catalina in categories including Best Fiction Series, Best Direction, Best Screenplay, and Best Cinematography.'
+        id: 'reina-flow',
+        title: 'LA REINA DEL FLOW 2', year: 2021, platform: 'Caracol TV / Netflix', studio: 'Stargate Studios',
+        cat: 'film-tv', role: '3D Environment Artist',
+        img: 'ReinaDelFlow.jpg', poster: 'ReinaDelFlow.jpg', video: null,
+        award: '5× Premios India Catalina 2022 · Mejor Actriz, Libreto, Música y más',
+        tools: ['Blender', 'Maya', 'Photoshop'],
+        description: 'Created a 3D stadium environment for digital crowd extensions. Focused on modeling the stadium structure while other departments handled crowd generation and final compositing. The series won 5 Premios India Catalina in 2022 including Best Actress, Best Screenplay, and Best Music Director. The franchise\'s Season 1 previously won the International Emmy Award for Best Telenovela — the first International Emmy won by a Colombian production.'
     },
     {
-        id: 'la-virginia',
-        title: 'LA VIRGINIA', year: 2025, platform: 'Commercial', studio: 'TIS Productions',
-        cat: 'advertising', role: 'VFX Compositor',
-        img: null,
-        poster: null,
-        video: 'virginia-reel.mp4',
-        tools: ['Nuke', 'Photoshop'],
-        description: 'Full-CG commercial featuring animated "Coates," a stylized family of tea mascots with Disney-inspired design. Work included render pass compositing and look development support with light wraps, glows, and atmospheric effects.'
-    },
-    {
-        id: 'dux',
-        title: 'DUX', year: 2023, platform: 'Commercial', studio: 'Efecto Perfecto',
-        cat: 'advertising', role: 'Compositing Lead & Lookdev Supervisor',
-        img: null,
-        poster: null,
-        video: 'dux.mp4',
-        tools: ['Nuke', 'Photoshop', 'After Effects', 'Blender'],
-        description: 'Commercial featuring stylized 3D compositing. Led the compositing phase and visual look development, maintaining a toon-lined aesthetic while managing volumetric elements and depth across shots. Render pass integration (diffuse, specular, volume, line art) achieving a cohesive cartoon-styled world.'
-    },
-    {
-        id: 'naf-naf',
-        title: 'NAF NAF & BRETAÑA', year: 2023, platform: 'Commercial', studio: 'Efecto Perfecto',
-        cat: 'advertising', role: 'Compositing Lead & On-Set Supervisor',
-        img: null,
-        poster: null,
-        video: 'nafnaf.mp4',
-        tools: ['Nuke', 'Photoshop', 'After Effects'],
-        description: 'Commercial merging live-action and CG elements, featuring real actresses filmed in a luxury vehicle on set, seamlessly placed in a stylized "Naf Naf world." Led compositing team integrating live-action with CG environment. Supervised on-set VFX operations. Participated in 3D environment conceptualization.'
+        id: 'club-57',
+        title: 'CLUB 57', year: 2021, platform: 'Nickelodeon', studio: 'Rainbow SpA / Stargate',
+        cat: 'film-tv', role: '3D Generalist',
+        img: 'Club57.jpg', poster: 'Club57.jpg', video: null,
+        award: 'PRODU Award · Best Youth Series 2021',
+        tools: ['Blender', 'Maya', 'Photoshop', 'PFTRACK'],
+        description: 'Contributed to Season 2 developing stylized environments for multiple musical sequences. "Cupido" music video: Built a fully CG circus environment. "Luna Para Ti": Designed background assets and 3D elements. "Eva": Provided assets and 3D tracking for a time-freeze visual effect inspired by Quicksilver sequences from X-Men. Season 2 won the PRODU Award for Best Youth Series 2021.'
     }
 ];
 
@@ -1044,18 +1036,13 @@ function openModal(idx) {
 
     /* Build right panel */
     const videoHTML = (() => {
-        let html = '';
-        if (p.video) {
-            html += `
-                <div class="m-video-wrap">
-                    <div class="m-video-label">Video</div>
-                    <video class="m-video" src="${p.video}" controls muted playsinline preload="metadata"></video>
-                </div>
-            `;
-        }
-        if (p.video2) {
-            html += `<video class="m-video" src="${p.video2}" controls muted playsinline preload="metadata" style="margin-top:10px"></video>`;
-        }
+        const vids = [p.video, p.video2, p.video3, p.video4, p.video5, p.video6].filter(Boolean);
+        if (!vids.length) return '';
+        let html = `<div class="m-video-wrap"><div class="m-video-label">VFX Breakdown</div>`;
+        vids.forEach((src, i) => {
+            html += `<video class="m-video" src="${src}" controls muted playsinline preload="metadata"${i > 0 ? ' style="margin-top:10px"' : ''}></video>`;
+        });
+        html += `</div>`;
         return html;
     })();
 
