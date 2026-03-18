@@ -15,6 +15,19 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
+    --bg:     #0a0a0a;
+    --bg2:    #111111;
+    --bg3:    #1e1e1e;
+    --dark:   #f2ede4;
+    --dark2:  #e0d8cc;
+    --gray:   #666;
+    --gray2:  #444;
+    --border: rgba(255,255,255,0.08);
+    --fh:     'Bebas Neue', sans-serif;
+    --fb:     'Inter', sans-serif;
+    color-scheme: dark;
+}
+body.light {
     --bg:     #ffffff;
     --bg2:    #f5f5f3;
     --bg3:    #e8e8e6;
@@ -22,8 +35,8 @@
     --dark2:  #141414;
     --gray:   #888;
     --gray2:  #bbb;
-    --fh:     'Bebas Neue', sans-serif;
-    --fb:     'Inter', sans-serif;
+    --border: rgba(0,0,0,0.08);
+    color-scheme: light;
 }
 
 html { scroll-behavior: auto; }
@@ -99,10 +112,13 @@ body.modal-open { overflow: hidden; }
 }
 #nav.scrolled {
     padding: 16px 64px;
-    background: rgba(255,255,255,.93);
+    background: rgba(10,10,10,.93);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--bg3);
+    border-bottom: 1px solid var(--border);
+}
+body.light #nav.scrolled {
+    background: rgba(255,255,255,.93);
 }
 .nav-logo {
     font-family: var(--fh); font-size: 1.3rem;
@@ -119,6 +135,24 @@ body.modal-open { overflow: hidden; }
 .nav-links a:hover { color: #fff !important; }
 #nav.scrolled .nav-links a:hover { color: var(--dark) !important; }
 .nav-num { font-size: .55rem; letter-spacing: 2px; color: rgba(255,255,255,.3); margin-right: 5px; }
+.nav-cv {
+    font-size: .62rem; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.2);
+    padding: 6px 14px; transition: all .3s;
+}
+.nav-cv:hover { color: #fff; border-color: rgba(255,255,255,.6); }
+#nav.scrolled .nav-cv { color: var(--gray); border-color: var(--border); }
+#nav.scrolled .nav-cv:hover { color: var(--dark); }
+
+#theme-toggle {
+    background: none; border: 1px solid rgba(255,255,255,.25);
+    color: rgba(255,255,255,.7); width: 34px; height: 34px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; transition: all .3s; cursor: none; flex-shrink: 0;
+}
+#theme-toggle:hover { border-color: rgba(255,255,255,.8); color: #fff; }
+#nav.scrolled #theme-toggle { border-color: var(--border); color: var(--gray); }
+#nav.scrolled #theme-toggle:hover { border-color: var(--dark); color: var(--dark); }
 #nav.scrolled .nav-num { color: var(--gray2); }
 
 /* ── HERO ──────────────────────────────────────── */
@@ -605,7 +639,11 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
         <li><a href="#about"><span class="nav-num">01</span>About</a></li>
         <li><a href="#projects"><span class="nav-num">02</span>Work</a></li>
         <li><a href="#contact"><span class="nav-num">03</span>Contact</a></li>
+        <li><a href="CV_JeanSebastian_Rubio.pdf" download class="nav-cv">CV ↓</a></li>
     </ul>
+    <button id="theme-toggle" aria-label="Toggle theme">
+        <span id="theme-icon">☀</span>
+    </button>
 </nav>
 
 <!-- ══ HERO ═══════════════════════════════════════ -->
@@ -710,7 +748,7 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
                 <span>Instagram · @lokojeans</span>
                 <span class="ct-link-arr">↗</span>
             </a>
-            <a href="https://www.linkedin.com/in/jean-sebasti%C3%A1n-rubio-mendez" target="_blank" class="ct-link">
+            <a href="https://www.linkedin.com/in/jean-sebastian-rubio-mendez-3206801a2/" target="_blank" class="ct-link">
                 <span>LinkedIn · Jean Sebastián Rubio</span>
                 <span class="ct-link-arr">↗</span>
             </a>
@@ -1174,6 +1212,26 @@ document.querySelectorAll('[href^="#"]').forEach(a => {
             gsap.to(window, { scrollTo: target, duration: 1.15, ease: 'power3.inOut' });
         }
     });
+});
+
+/* ── DARK / LIGHT TOGGLE ─────────────────────── */
+const themeBtn = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+
+// Dark mode is default — load saved preference
+const saved = localStorage.getItem('theme');
+if (saved === 'light') {
+    document.body.classList.add('light');
+    themeIcon.textContent = '☾';
+} else {
+    themeIcon.textContent = '☀';
+}
+
+themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+    const isLight = document.body.classList.contains('light');
+    themeIcon.textContent = isLight ? '☾' : '☀';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
 });
 </script>
 </body>
