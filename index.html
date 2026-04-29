@@ -646,7 +646,8 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
 /* ── TOUCH DEVICES: cards always show title ─── */
 @media (hover: none) {
     .pc-body { transform: translateY(0) !important; }
-    .pc-plat, .pc-role, .pc-tools, .pc-open { opacity: 1 !important; }
+    .pc-plat, .pc-role, .pc-tools { opacity: 1 !important; }
+    .pc-open { display: none !important; }
     .pcard:hover .pc-img { transform: none; filter: brightness(.88) saturate(.8); }
 }
 
