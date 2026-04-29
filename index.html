@@ -6,6 +6,16 @@
     <title>Jean Sebastián Rubio</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta name="description" content="VFX Compositor & 3D Artist. Netflix, Disney+, Prime Video, Nickelodeon.">
+    <link rel="preload" as="image" href="img/hero-vfx.jpg" fetchpriority="high">
+    <meta property="og:title" content="Jean Sebastián Rubio | VFX Compositor & 3D Artist">
+    <meta property="og:description" content="VFX Compositor & 3D Artist with credits on Netflix, Disney+, Prime Video, and Nickelodeon. Lead Compositor on Delirio and Medusa.">
+    <meta property="og:image" content="https://jeansebastianrubio.com/img/hero-vfx.jpg">
+    <meta property="og:url" content="https://jeansebastianrubio.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jean Sebastián Rubio | VFX Compositor & 3D Artist">
+    <meta name="twitter:description" content="VFX Compositor & 3D Artist with credits on Netflix, Disney+, Prime Video, and Nickelodeon.">
+    <meta name="twitter:image" content="https://jeansebastianrubio.com/img/hero-vfx.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -164,9 +174,11 @@ body.light #nav.scrolled {
 }
 .h-img {
     position: absolute; inset: -8%;
-    background: url('img/hero-vfx.jpg') center center/cover no-repeat;
+    width: 116%; height: 116%;
+    object-fit: cover;
     will-change: transform;
     filter: brightness(.45);
+    background: #0a0a0a;
 }
 .h-img-ov {
     position: absolute; inset: 0;
@@ -598,6 +610,34 @@ footer {
 }
 footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5px; text-transform: uppercase; }
 
+/* ── MOBILE MENU ───────────────────────────────── */
+.menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px; z-index: 950; }
+.menu-btn span { display: block; width: 24px; height: 1.5px; background: #fff; transition: background .3s; }
+#nav.scrolled .menu-btn span { background: var(--dark); }
+.mobile-menu {
+    position: fixed; inset: 0; z-index: 1000; background: rgba(10,10,10,.98);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; visibility: hidden;
+    transition: opacity .35s ease, visibility .35s;
+}
+.mobile-menu.open { opacity: 1; pointer-events: all; visibility: visible; }
+.menu-close {
+    position: absolute; top: 24px; right: 28px; background: none; border: none;
+    color: #fff; font-size: 1.5rem; cursor: none;
+}
+.mobile-links { list-style: none; display: flex; flex-direction: column; gap: 32px; text-align: center; }
+.mobile-link {
+    font-family: var(--fh); font-size: 2rem; letter-spacing: 4px; color: #fff;
+    text-transform: uppercase; transition: color .3s;
+}
+.mobile-link:hover { color: var(--gray); }
+
+/* ── TOUCH DEVICES: disable custom cursor ─────── */
+@media (hover: none) and (pointer: coarse) {
+    body, a, button { cursor: auto !important; }
+    #cdot, #cring { display: none !important; }
+}
+
 /* ── RESPONSIVE ────────────────────────────────── */
 @media (max-width: 1100px) {
     .pgrid { grid-template-columns: repeat(3, 1fr); }
@@ -613,6 +653,7 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
 @media (max-width: 900px) {
     #nav, #nav.scrolled { padding: 18px 28px; }
     .nav-links { display: none; }
+    .menu-btn { display: flex; }
     .section { padding: 88px 28px; }
     #about { grid-template-columns: 1fr; padding: 88px 28px; gap: 56px; }
     #projects { padding: 88px 28px; }
@@ -664,11 +705,27 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
     <button id="theme-toggle" aria-label="Toggle theme">
         <span id="theme-icon">☀</span>
     </button>
+    <button id="menu-toggle" aria-label="Open menu" class="menu-btn">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu">
+    <button id="menu-close" aria-label="Close menu" class="menu-close">✕</button>
+    <ul class="mobile-links">
+        <li><a href="#about" class="mobile-link"><span class="nav-num">01</span>About</a></li>
+        <li><a href="#projects" class="mobile-link"><span class="nav-num">02</span>Work</a></li>
+        <li><a href="#contact" class="mobile-link"><span class="nav-num">03</span>Contact</a></li>
+        <li><a href="CV_JeanSebastian_Rubio.pdf" download class="mobile-link"><span class="nav-num">04</span>CV ↓</a></li>
+    </ul>
+</div>
 
 <!-- ══ HERO ═══════════════════════════════════════ -->
 <section id="hero">
-    <div class="h-img" id="himg"></div>
+    <video class="h-img" id="himg" autoplay muted loop playsinline poster="img/hero-vfx.jpg" preload="auto">
+        <source src="videos/reel-highlight.mp4" type="video/mp4">
+    </video>
     <div class="h-img-ov"></div>
 
     <div class="h-marquee">
@@ -750,7 +807,7 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
     <div class="stats-grid">
         <div class="stat-item"><div class="stat-n">14+</div><div class="stat-l">Productions</div></div>
         <div class="stat-item"><div class="stat-n">4</div><div class="stat-l">Major Platforms</div></div>
-        <div class="stat-item"><div class="stat-n">7+</div><div class="stat-l">Years Experience</div></div>
+        <div class="stat-item"><div class="stat-n">8+</div><div class="stat-l">Years Experience</div></div>
         <div class="stat-item"><div class="stat-n">9</div><div class="stat-l">Tools Mastered</div></div>
     </div>
 </div>
@@ -764,8 +821,8 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
     <div class="ct-right">
         <p class="ct-sub">Open to new projects, collaborations, and opportunities in VFX compositing and 3D production worldwide.</p>
         <div class="ct-links">
-            <a href="mailto:jean27rubio@gmail.com" class="ct-link">
-                <span>Email · jean27rubio@gmail.com</span>
+            <a href="#" class="ct-link" id="em-link">
+                <span id="em-text">Email · loading...</span>
                 <span class="ct-link-arr">↗</span>
             </a>
             <a href="https://wa.me/573160555984" target="_blank" class="ct-link">
@@ -1272,6 +1329,39 @@ themeBtn.addEventListener('click', () => {
     themeIcon.textContent = isLight ? '☾' : '☀';
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
 });
+/* ══ MOBILE MENU ═══════════════════════════════════ */
+const menuToggle = document.getElementById('menu-toggle');
+const menuClose = document.getElementById('menu-close');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileLinks = document.querySelectorAll('.mobile-link');
+
+function openMenu() { mobileMenu.classList.add('open'); document.body.classList.add('modal-open'); }
+function closeMenu() { mobileMenu.classList.remove('open'); document.body.classList.remove('modal-open'); }
+
+if (menuToggle) menuToggle.addEventListener('click', openMenu);
+if (menuClose) menuClose.addEventListener('click', closeMenu);
+mobileLinks.forEach(l => l.addEventListener('click', (e) => {
+    const href = l.getAttribute('href');
+    if (href && href.startsWith('#')) {
+        e.preventDefault();
+        closeMenu();
+        if (document.querySelector(href)) {
+            gsap.to(window, { scrollTo: href, duration: 1.15, ease: 'power3.inOut', delay: .35 });
+        }
+    } else {
+        closeMenu();
+    }
+}));
+
+/* ══ EMAIL OBFSUCATION ════════════════════════════ */
+const emUser = 'jean27rubio', emDomain = 'gmail.com';
+const emLink = document.getElementById('em-link');
+const emText = document.getElementById('em-text');
+if (emLink && emText) {
+    emLink.href = 'mailto:' + emUser + '@' + emDomain;
+    emText.textContent = 'Email · ' + emUser + '@' + emDomain;
+}
+
 </script>
 </body>
 </html>
