@@ -678,6 +678,52 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
     .h-title { font-size: clamp(3.2rem, 13vw, 5rem); }
     .modal-panel { width: 98vw; }
 }
+
+/* ── DEVELOPMENT / R&D ─────────────────────────── */
+#dev { background: var(--bg); padding: 128px 64px; }
+.dev-grid { display: grid; gap: 28px; margin-top: 56px; }
+.dev-card {
+    display: grid; grid-template-columns: 1.05fr 1.25fr;
+    background: var(--bg2); border: 1px solid var(--border);
+    overflow: hidden; transition: border-color .4s ease;
+}
+.dev-card:hover { border-color: var(--gray2); }
+.dev-media { position: relative; min-height: 340px; background: #000; overflow: hidden; }
+.dev-media img, .dev-media video {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: brightness(.95) saturate(.85); transition: transform .8s cubic-bezier(.4,0,.2,1), filter .5s;
+}
+.dev-card:hover .dev-media img, .dev-card:hover .dev-media video { transform: scale(1.04); filter: brightness(1) saturate(1); }
+.dev-tag-os {
+    position: absolute; top: 18px; left: 18px; z-index: 2;
+    background: var(--dark); color: var(--bg);
+    font-size: .5rem; letter-spacing: 2.5px; text-transform: uppercase; padding: 6px 12px;
+}
+.dev-body { padding: 52px; display: flex; flex-direction: column; justify-content: center; }
+.dev-sub {
+    font-size: .56rem; letter-spacing: 3.5px; text-transform: uppercase;
+    color: var(--gray); margin-bottom: 14px;
+}
+.dev-title {
+    font-family: var(--fh); font-size: clamp(2.4rem, 3.6vw, 3.4rem);
+    letter-spacing: 1.5px; line-height: .95; margin-bottom: 20px;
+}
+.dev-desc { font-size: .92rem; line-height: 1.95; color: var(--gray); margin-bottom: 28px; }
+.dev-desc strong { color: var(--dark); font-weight: 500; }
+.dev-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 32px; }
+.dev-link {
+    display: inline-flex; align-items: center; gap: 10px; align-self: flex-start;
+    font-size: .62rem; letter-spacing: 2.5px; text-transform: uppercase;
+    padding: 14px 28px; border: 1px solid var(--dark); color: var(--dark);
+    text-decoration: none; transition: all .3s;
+}
+.dev-link:hover { background: var(--dark); color: var(--bg); }
+@media (max-width: 900px) {
+    #dev { padding: 88px 28px; }
+    .dev-card { grid-template-columns: 1fr; }
+    .dev-media { min-height: 0; aspect-ratio: 16/10; }
+    .dev-body { padding: 32px; }
+}
     </style>
 </head>
 <body>
@@ -700,7 +746,8 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
     <ul class="nav-links">
         <li><a href="#about"><span class="nav-num">01</span>About</a></li>
         <li><a href="#projects"><span class="nav-num">02</span>Work</a></li>
-        <li><a href="#contact"><span class="nav-num">03</span>Contact</a></li>
+        <li><a href="#dev"><span class="nav-num">03</span>Dev</a></li>
+        <li><a href="#contact"><span class="nav-num">04</span>Contact</a></li>
         <li><a href="CV_JeanSebastian_Rubio.pdf" download class="nav-cv">CV ↓</a></li>
     </ul>
     <button id="theme-toggle" aria-label="Toggle theme">
@@ -717,8 +764,9 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
     <ul class="mobile-links">
         <li><a href="#about" class="mobile-link"><span class="nav-num">01</span>About</a></li>
         <li><a href="#projects" class="mobile-link"><span class="nav-num">02</span>Work</a></li>
-        <li><a href="#contact" class="mobile-link"><span class="nav-num">03</span>Contact</a></li>
-        <li><a href="CV_JeanSebastian_Rubio.pdf" download class="mobile-link"><span class="nav-num">04</span>CV ↓</a></li>
+        <li><a href="#dev" class="mobile-link"><span class="nav-num">03</span>Dev</a></li>
+        <li><a href="#contact" class="mobile-link"><span class="nav-num">04</span>Contact</a></li>
+        <li><a href="CV_JeanSebastian_Rubio.pdf" download class="mobile-link"><span class="nav-num">05</span>CV ↓</a></li>
     </ul>
 </div>
 
@@ -812,6 +860,36 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
         <div class="stat-item"><div class="stat-n">9</div><div class="stat-l">Tools Mastered</div></div>
     </div>
 </div>
+
+<!-- ══ DEVELOPMENT / R&D ══════════════════════════ -->
+<section id="dev">
+    <div>
+        <span class="s-label">Open Source · R&amp;D</span>
+        <h2 class="s-title">DEVELOPMENT</h2>
+    </div>
+    <div class="dev-grid">
+        <article class="dev-card">
+            <div class="dev-media">
+                <span class="dev-tag-os">Open Source</span>
+                <video src="videos/mocapos-demo.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            </div>
+            <div class="dev-body">
+                <p class="dev-sub">AI Tool · Motion Capture</p>
+                <h3 class="dev-title">MocapOS</h3>
+                <p class="dev-desc">Full-body <strong>+ hands</strong> motion capture from a single video — no suits, no markers. A portable, one-click pipeline built on <strong>GVHMR</strong> and <strong>HaMeR</strong> with a desktop GUI, turning ordinary footage into 3D body &amp; finger animation ready to clean up in Blender or Maya. Designed, packaged and open-sourced end to end.</p>
+                <div class="dev-tags">
+                    <span class="ttag">Python</span>
+                    <span class="ttag">PyTorch</span>
+                    <span class="ttag">GVHMR</span>
+                    <span class="ttag">HaMeR</span>
+                    <span class="ttag">SMPL-X</span>
+                    <span class="ttag">CUDA</span>
+                </div>
+                <a href="https://github.com/LokoJeans27/MocapOS" target="_blank" rel="noopener" class="dev-link">View on GitHub ↗</a>
+            </div>
+        </article>
+    </div>
+</section>
 
 <!-- ══ CONTACT ════════════════════════════════════ -->
 <section id="contact">
