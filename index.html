@@ -1496,18 +1496,6 @@ a,button,.pcard,.ftab,.modal-close,.nav-cv,.ct-link,.dev-link,.menu-btn{cursor:p
 <script>
 window.addEventListener('load',function(){
   var touch = window.matchMedia('(hover:none)').matches;
-  var io = null;
-  if(touch && 'IntersectionObserver' in window){
-    io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        var v = e.target.__pv; if(!v) return;
-        if(e.isIntersecting && e.intersectionRatio >= 0.6){
-          if(!v.__loaded){ v.src = v.__src; v.__loaded = true; }
-          v.play().catch(function(){}); v.classList.add('ready');
-        } else { v.classList.remove('ready'); v.pause(); }
-      });
-    }, {threshold:[0, 0.6, 1]});
-  }
   document.querySelectorAll('.pcard').forEach(function(card){
     var i = +card.dataset.idx, p = PROJECTS[i]; if(!p || !p.video) return;
     var lite = 'videos/prev/' + p.video.split('/').pop();   // light clip (mobile)
@@ -1516,12 +1504,38 @@ window.addEventListener('load',function(){
     var imgEl = card.querySelector('.pc-img');
     if(imgEl){ imgEl.insertAdjacentElement('afterend', v); }
     else { card.insertBefore(v, card.firstChild); }
+
     if(touch){
-      v.__src = lite;            // MOBILE -> lightweight clip (saves data)
-      card.__pv = v; if(io) io.observe(card);
+      /* MOBILE: press & hold to preview (like a long-press), quick tap opens the modal */
+      var sx, sy, moved=false, started=false, timer=null;
+      function startPreview(){
+        if(moved) return;
+        if(!v.__loaded){ v.src = lite; v.__loaded = true; }
+        v.play().catch(function(){}); v.classList.add('ready'); started=true;
+      }
+      function stopPreview(){
+        if(started){ v.classList.remove('ready'); v.pause(); started=false; }
+      }
+      card.addEventListener('touchstart', function(e){
+        moved=false; var t=e.touches[0]; sx=t.clientX; sy=t.clientY;
+        timer = setTimeout(startPreview, 150);   /* hold ~150ms to start preview */
+      }, {passive:true});
+      card.addEventListener('touchmove', function(e){
+        var t=e.touches[0];
+        if(Math.abs(t.clientX-sx)>10 || Math.abs(t.clientY-sy)>10){ moved=true; clearTimeout(timer); stopPreview(); }
+      }, {passive:true});
+      card.addEventListener('touchend', function(e){
+        clearTimeout(timer);
+        if(started){ stopPreview(); v.__suppress=true; e.preventDefault(); }  /* was previewing -> don't open modal */
+      }, {passive:false});
+      card.addEventListener('touchcancel', function(){ clearTimeout(timer); stopPreview(); });
+      card.addEventListener('click', function(e){
+        if(v.__suppress){ v.__suppress=false; e.stopImmediatePropagation(); e.preventDefault(); }
+      }, true);
     } else {
+      /* DESKTOP: hover plays the full-quality video */
       card.addEventListener('mouseenter',function(){
-        if(!v.__loaded){ v.src = p.video; v.__loaded = true; }   // DESKTOP -> full quality
+        if(!v.__loaded){ v.src = p.video; v.__loaded = true; }
         try{ v.currentTime = 0; }catch(e){}
         v.play().catch(function(){}); v.classList.add('ready');
       });
