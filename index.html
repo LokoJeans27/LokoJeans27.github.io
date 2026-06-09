@@ -856,7 +856,7 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
     <div class="stats-grid">
         <div class="stat-item"><div class="stat-n">14+</div><div class="stat-l">Productions</div></div>
         <div class="stat-item"><div class="stat-n">4</div><div class="stat-l">Major Platforms</div></div>
-        <div class="stat-item"><div class="stat-n">8+</div><div class="stat-l">Years Experience</div></div>
+        <div class="stat-item"><div class="stat-n">7+</div><div class="stat-l">Years Experience</div></div>
         <div class="stat-item"><div class="stat-n">9</div><div class="stat-l">Tools Mastered</div></div>
     </div>
 </div>
@@ -1441,6 +1441,47 @@ if (emLink && emText) {
     emText.textContent = 'Email · ' + emUser + '@' + emDomain;
 }
 
+</script>
+
+<!-- == MASONRY GALLERY + INLINE HOVER VIDEO == -->
+<style>
+/* smaller About photo */
+#about{grid-template-columns:.62fr 1.38fr;gap:72px}
+.ab-visual{max-width:300px;width:100%;margin:0 auto}
+@media(max-width:900px){#about{grid-template-columns:1fr}.ab-visual{max-width:240px}}
+
+/* masonry projects (Pinterest-style) */
+.pgrid{column-count:5;column-gap:8px;display:block;grid-template-columns:none!important}
+@media(max-width:1100px){.pgrid{column-count:4}}
+@media(max-width:700px){.pgrid{column-count:3;column-gap:5px}}
+@media(max-width:480px){.pgrid{column-count:2}}
+.pcard{aspect-ratio:auto!important;break-inside:avoid;margin:0 0 8px;display:block;min-height:180px}
+.pc-img{position:static!important;height:auto!important;width:100%;display:block}
+
+/* video plays INSIDE the card cover on hover */
+.pc-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity .35s ease;z-index:1}
+.pc-video.ready{opacity:1}
+</style>
+<script>
+window.addEventListener('load',function(){
+  if(window.matchMedia('(hover:none)').matches) return;
+  document.querySelectorAll('.pcard').forEach(function(card){
+    var i=+card.dataset.idx, p=PROJECTS[i]; if(!p||!p.video) return;
+    var v=document.createElement('video');
+    v.className='pc-video'; v.muted=true; v.loop=true; v.playsInline=true; v.preload='none';
+    var imgEl=card.querySelector('.pc-img');
+    if(imgEl){ imgEl.insertAdjacentElement('afterend', v); }
+    else { card.insertBefore(v, card.firstChild); }
+    var loaded=false;
+    card.addEventListener('mouseenter',function(){
+      if(!loaded){ v.src=p.video; loaded=true; }
+      try{ v.currentTime=0; }catch(e){}
+      v.play().catch(function(){}); v.classList.add('ready');
+    });
+    card.addEventListener('mouseleave',function(){ v.classList.remove('ready'); v.pause(); });
+  });
+});
 </script>
 </body>
 </html>
