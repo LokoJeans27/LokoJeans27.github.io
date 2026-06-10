@@ -1496,9 +1496,16 @@ a,button,.pcard,.ftab,.modal-close,.nav-cv,.ct-link,.dev-link,.menu-btn{cursor:p
 <script>
 window.addEventListener('load',function(){
   var touch = window.matchMedia('(hover:none)').matches;
+  /* per-project preview overrides: use a different video / start time */
+  var PREVIEW_OVERRIDE = {
+    'pancho-villa': { video: 'videos/pancho-VCDN_101_104_35_2_VFX.mp4', start: 3 }
+  };
   document.querySelectorAll('.pcard').forEach(function(card){
     var i = +card.dataset.idx, p = PROJECTS[i]; if(!p || !p.video) return;
-    var lite = 'videos/prev/' + p.video.split('/').pop();   // light clip (mobile)
+    var ov = PREVIEW_OVERRIDE[p.id] || null;
+    var fullSrc = ov ? ov.video : p.video;          /* desktop hover source */
+    var startAt = ov ? ov.start : 0;                 /* seek-to seconds */
+    var lite = 'videos/prev/' + fullSrc.split('/').pop();  /* mobile clip (already trimmed) */
     var v = document.createElement('video');
     v.className='pc-video'; v.muted=true; v.loop=true; v.playsInline=true; v.preload='none';
     var imgEl = card.querySelector('.pc-img');
@@ -1506,19 +1513,17 @@ window.addEventListener('load',function(){
     else { card.insertBefore(v, card.firstChild); }
 
     if(touch){
-      /* MOBILE: press & hold to preview (like a long-press), quick tap opens the modal */
+      /* MOBILE: press & hold to preview; quick tap opens the modal */
       var sx, sy, moved=false, started=false, timer=null;
       function startPreview(){
         if(moved) return;
         if(!v.__loaded){ v.src = lite; v.__loaded = true; }
         v.play().catch(function(){}); v.classList.add('ready'); started=true;
       }
-      function stopPreview(){
-        if(started){ v.classList.remove('ready'); v.pause(); started=false; }
-      }
+      function stopPreview(){ if(started){ v.classList.remove('ready'); v.pause(); started=false; } }
       card.addEventListener('touchstart', function(e){
         moved=false; var t=e.touches[0]; sx=t.clientX; sy=t.clientY;
-        timer = setTimeout(startPreview, 150);   /* hold ~150ms to start preview */
+        timer = setTimeout(startPreview, 150);
       }, {passive:true});
       card.addEventListener('touchmove', function(e){
         var t=e.touches[0];
@@ -1526,17 +1531,20 @@ window.addEventListener('load',function(){
       }, {passive:true});
       card.addEventListener('touchend', function(e){
         clearTimeout(timer);
-        if(started){ stopPreview(); v.__suppress=true; e.preventDefault(); }  /* was previewing -> don't open modal */
+        if(started){ stopPreview(); v.__suppress=true; e.preventDefault(); }
       }, {passive:false});
       card.addEventListener('touchcancel', function(){ clearTimeout(timer); stopPreview(); });
       card.addEventListener('click', function(e){
         if(v.__suppress){ v.__suppress=false; e.stopImmediatePropagation(); e.preventDefault(); }
       }, true);
     } else {
-      /* DESKTOP: hover plays the full-quality video */
+      /* DESKTOP: hover plays the full-quality video (from startAt seconds) */
       card.addEventListener('mouseenter',function(){
-        if(!v.__loaded){ v.src = p.video; v.__loaded = true; }
-        try{ v.currentTime = 0; }catch(e){}
+        if(!v.__loaded){
+          v.src = fullSrc; v.__loaded = true;
+          if(startAt){ v.addEventListener('loadeddata', function(){ try{ v.currentTime = startAt; }catch(e){} }, {once:true}); }
+        }
+        try{ v.currentTime = startAt; }catch(e){}
         v.play().catch(function(){}); v.classList.add('ready');
       });
       card.addEventListener('mouseleave',function(){ v.classList.remove('ready'); v.pause(); });
