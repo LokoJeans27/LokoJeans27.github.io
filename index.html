@@ -602,6 +602,36 @@ body.light #nav.scrolled {
 .ct-link:hover span,
 .ct-link:hover .ct-link-arr { color: #fff; }
 .ct-link-arr { font-size: 1rem; }
+/* ── CONTACT FORM ─────────────────────────────── */
+.ct-form { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.ct-input {
+    width: 100%; padding: 18px 24px; border: 1px solid var(--bg3);
+    background: transparent; color: var(--dark);
+    font-family: inherit; font-size: .8rem; letter-spacing: 1px;
+    transition: border-color .35s;
+}
+.ct-input::placeholder { color: #888; text-transform: uppercase; font-size: .62rem; letter-spacing: 3px; }
+.ct-input:focus { outline: none; border-color: var(--dark); }
+.ct-textarea { resize: vertical; min-height: 110px; }
+.ct-submit {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 24px; border: 1px solid var(--bg3); background: transparent;
+    font-size: .65rem; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--dark); cursor: pointer; transition: all .35s;
+    position: relative; overflow: hidden; font-family: inherit;
+}
+.ct-submit::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--dark); transform: translateX(-101%);
+    transition: transform .4s cubic-bezier(.4,0,.2,1);
+}
+.ct-submit:hover::before { transform: translateX(0); }
+.ct-submit span { position: relative; z-index: 1; transition: color .35s; }
+.ct-submit:hover span { color: #fff; }
+.ct-status {
+    font-size: .62rem; letter-spacing: 2px; text-transform: uppercase;
+    color: #888; margin-top: 4px; min-height: 1em;
+}
 
 /* ── FOOTER ────────────────────────────────────── */
 footer {
@@ -898,15 +928,21 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
     </div>
     <div class="ct-right">
         <p class="ct-sub">Open to new projects, collaborations, and opportunities in VFX compositing and 3D production worldwide.</p>
+        <form id="contact-form" class="ct-form">
+            <input type="hidden" name="access_key" value="925b7fe9-f576-4408-8851-6d19897df406">
+            <input type="hidden" name="subject" value="New message from your portfolio">
+            <input type="hidden" name="from_name" value="jeansebastianrubio.com">
+            <input type="text" name="name" class="ct-input" placeholder="Your name" required autocomplete="name">
+            <input type="email" name="email" class="ct-input" placeholder="Your email" required autocomplete="email">
+            <textarea name="message" class="ct-input ct-textarea" placeholder="Your message" rows="4" required></textarea>
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none !important">
+            <button type="submit" class="ct-submit">
+                <span>Send Message</span>
+                <span class="ct-link-arr">↗</span>
+            </button>
+            <p id="ct-status" class="ct-status" role="status" aria-live="polite"></p>
+        </form>
         <div class="ct-links">
-            <a href="#" class="ct-link" id="em-link">
-                <span id="em-text">Email · loading...</span>
-                <span class="ct-link-arr">↗</span>
-            </a>
-            <a href="https://wa.me/573160555984" target="_blank" class="ct-link">
-                <span>WhatsApp · +57 316 055 5984</span>
-                <span class="ct-link-arr">↗</span>
-            </a>
             <a href="https://www.instagram.com/lokojeans" target="_blank" class="ct-link">
                 <span>Instagram · @lokojeans</span>
                 <span class="ct-link-arr">↗</span>
@@ -1431,13 +1467,35 @@ mobileLinks.forEach(l => l.addEventListener('click', (e) => {
     }
 }));
 
-/* ══ EMAIL OBFSUCATION ════════════════════════════ */
-const emUser = 'jean27rubio', emDomain = 'gmail.com';
-const emLink = document.getElementById('em-link');
-const emText = document.getElementById('em-text');
-if (emLink && emText) {
-    emLink.href = 'mailto:' + emUser + '@' + emDomain;
-    emText.textContent = 'Email · ' + emUser + '@' + emDomain;
+/* ══ CONTACT FORM (Web3Forms) ═════════════════════ */
+const cForm = document.getElementById('contact-form');
+const cStatus = document.getElementById('ct-status');
+if (cForm) {
+    cForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        cStatus.style.color = '#888';
+        cStatus.textContent = 'Sending...';
+        const data = Object.fromEntries(new FormData(cForm));
+        try {
+            const res = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const json = await res.json();
+            if (json.success) {
+                cStatus.style.color = '#4caf50';
+                cStatus.textContent = 'Message sent — thank you!';
+                cForm.reset();
+            } else {
+                cStatus.style.color = '#e57373';
+                cStatus.textContent = 'Something went wrong. Please try again.';
+            }
+        } catch (err) {
+            cStatus.style.color = '#e57373';
+            cStatus.textContent = 'Network error. Please try again.';
+        }
+    });
 }
 
 </script>
