@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Development — Jean Sebastián Rubio</title>
+    <title>SSS360 — AI Masking for 360° Photogrammetry | Jean Sebastián Rubio</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="description" content="Open-source tools & R&D by Jean Sebastián Rubio — including MocapOS, single-video full-body + hands motion capture.">
-    <meta property="og:title" content="Development · Jean Sebastián Rubio">
-    <meta property="og:description" content="Open-source tools & R&D — including MocapOS, single-video full-body + hands motion capture built on GVHMR and HaMeR.">
+    <meta name="description" content="SSS360 — desktop tool that uses AI segmentation to mask 360° photogrammetry footage (sky, cables, rigs, people) and auto-package clean plates for RealityCapture & 3D Gaussian Splatting.">
+    <meta property="og:title" content="SSS360 · AI Masking for 360° Photogrammetry">
+    <meta property="og:description" content="From 360° video to clean photogrammetry plates for 3D Gaussian Splatting — automatic AI masking of sky, power lines, rigs and people.">
     <meta property="og:image" content="https://jeansebastianrubio.com/img/og-card.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Jean Sebastián Rubio — VFX Compositor & 3D Artist">
-    <meta property="og:url" content="https://jeansebastianrubio.com/dev.html">
+    <meta property="og:url" content="https://jeansebastianrubio.com/sss360.html">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Jean Sebastián Rubio | VFX Compositor & 3D Artist">
@@ -716,12 +716,11 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
 .dev-grid { display: grid; gap: 28px; margin-top: 56px; }
 .dev-card {
     display: grid; grid-template-columns: 1.05fr 1.25fr;
-    align-items: center;
     background: var(--bg2); border: 1px solid var(--border);
     overflow: hidden; transition: border-color .4s ease;
 }
 .dev-card:hover { border-color: var(--gray2); }
-.dev-media { position: relative; aspect-ratio: 16/9; min-height: 0; background: #000; overflow: hidden; }
+.dev-media { position: relative; min-height: 340px; background: #000; overflow: hidden; }
 .dev-media img, .dev-media video {
     width: 100%; height: 100%; object-fit: cover; display: block;
     filter: brightness(.95) saturate(.85); transition: transform .8s cubic-bezier(.4,0,.2,1), filter .5s;
@@ -754,7 +753,7 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
 @media (max-width: 900px) {
     #dev { padding: 88px 28px; }
     .dev-card { grid-template-columns: 1fr; }
-    .dev-media { min-height: 0; aspect-ratio: 16/9; }
+    .dev-media { min-height: 0; aspect-ratio: 16/10; }
     .dev-body { padding: 32px; }
 }
     </style>
@@ -790,75 +789,83 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
     </ul>
 </div>
 
-<!-- ══ DEVELOPMENT (dedicated page) ════════════════ -->
-<section id="dev" class="dev-page">
-    <a href="index.html" class="dev-back">← Back to portfolio</a>
-    <div>
-        <span class="s-label">Tools · R&amp;D</span>
-        <h2 class="s-title">DEVELOPMENT</h2>
-        <p class="dev-intro">Tools and research I build when a shot — or a pipeline — needs something that doesn't exist yet. Some released open source, some shipped as products.</p>
+<!-- ══ SSS360 — PROJECT PAGE ═══════════════════════ -->
+<section class="proj-page">
+    <a href="dev.html" class="dev-back">← Back to development</a>
+
+    <!-- TITLE FIRST -->
+    <header class="proj-hero">
+        <span class="proj-logo"><img src="img/sss360-logo.png" alt="SSS360 logo"></span>
+        <span class="s-label">Commercial · 360° Photogrammetry</span>
+        <h1 class="proj-title">SSS360</h1>
+        <p class="proj-tagline">From 360° video to clean photogrammetry plates for 3D Gaussian Splatting — automatic AI masking of everything you don't want in the scan.</p>
+        <div class="dev-tags proj-tags">
+            <span class="ttag">Python</span>
+            <span class="ttag">PyTorch</span>
+            <span class="ttag">SAM</span>
+            <span class="ttag">CUDA</span>
+            <span class="ttag">RealityCapture</span>
+            <span class="ttag">OpenCV</span>
+        </div>
+    </header>
+
+    <!-- ALL THE INFORMATION -->
+    <div class="proj-body">
+        <div class="proj-block">
+            <h2 class="proj-h">What it does</h2>
+            <p class="proj-p">SSS360 takes the equirectangular video from a 360° camera and prepares it for photogrammetry. It runs <strong>AI segmentation (SAM)</strong> on the footage to automatically detect and mask out everything that shouldn't end up in your 3D reconstruction — <strong>sky, power lines, rigs, vehicles and people</strong> — then reprojects the sphere into a set of overlapping flat views and packages them so they're ready to drop straight into RealityCapture.</p>
+        </div>
+
+        <div class="proj-block">
+            <h2 class="proj-h">How it works</h2>
+            <ol class="proj-steps">
+                <li><strong>Import &amp; pick a frame.</strong> Load the 360° video and preview any frame instantly to check framing before processing.</li>
+                <li><strong>AI masking.</strong> SAM segments each equirectangular frame, masking sky, cables, the operator and other unwanted objects — with manual control over dilation, smoothing and the nadir (bottom) cover.</li>
+                <li><strong>Reprojection.</strong> The spherical frame is reprojected into overlapping flat views (a configurable ring + top/bottom) so RealityCapture sees clean, undistorted images.</li>
+                <li><strong>Auto-packaging.</strong> Views are batched and sized to your available RAM, with quality auto-adapted to the source resolution (up to 8K), ready for RealityCapture → 3D Gaussian Splats.</li>
+            </ol>
+        </div>
+
+        <div class="proj-feats">
+            <div>
+                <p class="dev-feat-h good">Built for</p>
+                <ul class="dev-feat-list good">
+                    <li>Street &amp; environment capture from a single 360 camera</li>
+                    <li>Removing sky, cables &amp; the operator automatically</li>
+                    <li>Feeding RealityCapture → Gaussian Splats / 3D scenes</li>
+                    <li>High-resolution footage up to 8K equirectangular</li>
+                </ul>
+            </div>
+            <div>
+                <p class="dev-feat-h bad">Not for</p>
+                <ul class="dev-feat-list bad">
+                    <li>Real-time / live video masking</li>
+                    <li>Single flat photos (it expects 360° equirectangular)</li>
+                    <li>PCs without an NVIDIA RTX / GTX 16xx GPU</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="proj-block">
+            <h2 class="proj-h">Highlights</h2>
+            <ul class="proj-list">
+                <li>One-click pipeline with a clean desktop GUI — no command line.</li>
+                <li>Automatic sky &amp; cable removal powered by SAM segmentation.</li>
+                <li>Smart RAM-aware packaging with adjustable overlap for solid alignment.</li>
+                <li>Auto-quality based on resolution + a RealityCapture preset for street capture.</li>
+                <li>Fast preview viewer with fluid zoom / pan to inspect masks at full detail.</li>
+            </ul>
+        </div>
     </div>
-    <div class="dev-grid">
-        <a class="dev-card dev-card-link" href="sss360.html">
-            <div class="dev-media">
-                <span class="dev-tag-os">Commercial</span>
-                <span class="dev-logo"><img src="img/sss360-logo.png" alt="SSS360 logo"></span>
-                <video src="videos/sss360-demo.mp4" autoplay loop muted playsinline preload="metadata"></video>
-            </div>
-            <div class="dev-body">
-                <p class="dev-sub">AI Tool · 360° Photogrammetry</p>
-                <h3 class="dev-title">SSS360</h3>
-                <p class="dev-desc">Turns <strong>360° video</strong> into clean photogrammetry plates for <strong>3D Gaussian Splatting</strong>. It runs AI segmentation (<strong>SAM</strong>) on each equirectangular frame to automatically mask out skies, power lines, rigs and people, then reprojects the sphere into overlapping flat views and auto-packages them for <strong>RealityCapture</strong> — sizing each batch to your RAM and adapting quality to the source resolution (up to 8K).</p>
-                <div class="dev-feats">
-                    <div>
-                        <p class="dev-feat-h good">Built for</p>
-                        <ul class="dev-feat-list good">
-                            <li>Street &amp; environment capture from a single 360 camera</li>
-                            <li>Removing sky, cables &amp; the operator automatically</li>
-                            <li>Feeding RealityCapture → Gaussian Splats / 3D scenes</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <p class="dev-feat-h bad">Not for</p>
-                        <ul class="dev-feat-list bad">
-                            <li>Real-time / live video masking</li>
-                            <li>Single flat photos (it expects 360 equirectangular)</li>
-                            <li>PCs without an NVIDIA RTX/GTX 16xx GPU</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="dev-tags">
-                    <span class="ttag">Python</span>
-                    <span class="ttag">PyTorch</span>
-                    <span class="ttag">SAM</span>
-                    <span class="ttag">CUDA</span>
-                    <span class="ttag">RealityCapture</span>
-                    <span class="ttag">OpenCV</span>
-                </div>
-                <span class="dev-link dev-link-cue">View project ↗</span>
-            </div>
-        </a>
-        <a class="dev-card dev-card-link" href="https://github.com/LokoJeans27/MocapOS" target="_blank" rel="noopener">
-            <div class="dev-media">
-                <span class="dev-tag-os">Open Source</span>
-                <span class="dev-logo"><img src="img/mocapos-logo.png" alt="MocapOS logo"></span>
-                <video src="videos/mocapos-demo.mp4" autoplay loop muted playsinline preload="metadata"></video>
-            </div>
-            <div class="dev-body">
-                <p class="dev-sub">AI Tool · Motion Capture</p>
-                <h3 class="dev-title">MocapOS</h3>
-                <p class="dev-desc">Full-body <strong>+ hands</strong> motion capture from a single video — no suits, no markers. A portable, one-click pipeline built on <strong>GVHMR</strong> and <strong>HaMeR</strong> with a desktop GUI, turning ordinary footage into 3D body &amp; finger animation ready to clean up in Blender or Maya. Designed, packaged and open-sourced end to end.</p>
-                <div class="dev-tags">
-                    <span class="ttag">Python</span>
-                    <span class="ttag">PyTorch</span>
-                    <span class="ttag">GVHMR</span>
-                    <span class="ttag">HaMeR</span>
-                    <span class="ttag">SMPL-X</span>
-                    <span class="ttag">CUDA</span>
-                </div>
-                <span class="dev-link dev-link-cue">View on GitHub ↗</span>
-            </div>
-        </a>
+
+    <!-- DEMO VIDEO LAST -->
+    <div class="proj-video">
+        <span class="proj-video-label">Demo</span>
+        <video src="videos/sss360-demo.mp4" autoplay loop muted playsinline controls preload="metadata"></video>
+    </div>
+
+    <div class="proj-cta">
+        <span class="dev-link dev-link-soon">Coming soon</span>
     </div>
 </section>
 
@@ -896,11 +903,47 @@ a,button,.nav-cv,.dev-link,.dev-back,.menu-btn,#theme-toggle{cursor:pointer!impo
 .dev-feat-list.good li::before { content: '+'; color: #6cbf73; }
 .dev-feat-list.bad  li::before { content: '\2013'; color: #c47b6b; }
 @media (max-width: 760px) { .dev-page { padding-top: 120px; } .dev-feats { grid-template-columns: 1fr; gap: 18px; } }
-/* whole SSS360 card is a giant button → its dedicated page */
-.dev-card-link { cursor: pointer !important; text-decoration: none; color: inherit; }
-.dev-card-link:hover { border-color: var(--gray2); }
-.dev-link-cue { transition: background .3s, color .3s; }
-.dev-card-link:hover .dev-link-cue { background: var(--dark); color: var(--bg); }
+
+/* ── SSS360 dedicated project page ─────────────── */
+.proj-page { min-height: 100vh; padding: 160px 64px 120px; max-width: 920px; margin: 0 auto; }
+.proj-hero { margin-bottom: 64px; }
+.proj-logo {
+    display: inline-flex; width: 72px; height: 72px; border-radius: 16px; overflow: hidden;
+    margin-bottom: 28px; box-shadow: 0 8px 26px rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.18);
+}
+.proj-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.proj-title { font-family: var(--fh); font-size: clamp(3.5rem, 9vw, 6.5rem); letter-spacing: 3px; line-height: .9; margin: 14px 0 20px; }
+.proj-tagline { color: var(--gray); font-size: 1.05rem; line-height: 1.7; max-width: 640px; margin-bottom: 28px; }
+.proj-tags { margin-top: 4px; }
+.proj-body { display: flex; flex-direction: column; gap: 52px; margin-bottom: 72px; }
+.proj-block {}
+.proj-h { font-family: var(--fh); font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: 1.5px; margin-bottom: 18px; }
+.proj-p { font-size: .95rem; line-height: 2; color: var(--gray); max-width: 720px; }
+.proj-p strong { color: var(--dark); font-weight: 500; }
+.proj-steps { counter-reset: step; list-style: none; display: flex; flex-direction: column; gap: 16px; max-width: 720px; }
+.proj-steps li { counter-increment: step; position: relative; padding-left: 46px; font-size: .92rem; line-height: 1.8; color: var(--gray); }
+.proj-steps li::before {
+    content: counter(step); position: absolute; left: 0; top: 0;
+    width: 30px; height: 30px; border: 1px solid var(--border); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--fh); font-size: .9rem; color: var(--dark); letter-spacing: 1px;
+}
+.proj-steps li strong { color: var(--dark); font-weight: 500; }
+.proj-list { list-style: none; display: flex; flex-direction: column; gap: 10px; max-width: 720px; }
+.proj-list li { position: relative; padding-left: 18px; font-size: .92rem; line-height: 1.7; color: var(--gray); }
+.proj-list li::before { content: '—'; position: absolute; left: 0; color: var(--gray2); }
+.proj-feats { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: 32px; background: var(--bg2); border: 1px solid var(--border); }
+.proj-video { margin-bottom: 40px; }
+.proj-video-label { display: block; font-size: .56rem; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 16px; }
+.proj-video video { width: 100%; display: block; border: 1px solid var(--bg3); background: #000; }
+.proj-cta { display: flex; justify-content: center; }
+.dev-link-soon { opacity: .55; border-style: dashed; cursor: default !important; letter-spacing: 3px; }
+.dev-link-soon:hover { background: transparent; color: var(--dark); }
+@media (max-width: 760px) {
+    .proj-page { padding: 120px 28px 80px; }
+    .proj-feats { grid-template-columns: 1fr; gap: 24px; padding: 24px; }
+    .proj-body { gap: 40px; }
+}
 </style>
 
 <script>
