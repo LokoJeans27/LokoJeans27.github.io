@@ -809,24 +809,6 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
                 <p class="dev-sub">AI Tool · 360° Photogrammetry</p>
                 <h3 class="dev-title">SSS360</h3>
                 <p class="dev-desc">Turns <strong>360° video</strong> into clean photogrammetry plates for <strong>3D Gaussian Splatting</strong>. It runs AI segmentation (<strong>SAM</strong>) on each equirectangular frame to automatically mask out skies, power lines, rigs and people, then reprojects the sphere into overlapping flat views and auto-packages them for <strong>RealityCapture</strong> — sizing each batch to your RAM and adapting quality to the source resolution (up to 8K).</p>
-                <div class="dev-feats">
-                    <div>
-                        <p class="dev-feat-h good">Built for</p>
-                        <ul class="dev-feat-list good">
-                            <li>Street &amp; environment capture from a single 360 camera</li>
-                            <li>Removing sky, cables &amp; the operator automatically</li>
-                            <li>Feeding RealityCapture → Gaussian Splats / 3D scenes</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <p class="dev-feat-h bad">Not for</p>
-                        <ul class="dev-feat-list bad">
-                            <li>Real-time / live video masking</li>
-                            <li>Single flat photos (it expects 360 equirectangular)</li>
-                            <li>PCs without an NVIDIA RTX/GTX 16xx GPU</li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="dev-tags">
                     <span class="ttag">Python</span>
                     <span class="ttag">PyTorch</span>
