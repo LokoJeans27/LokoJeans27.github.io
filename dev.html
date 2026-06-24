@@ -802,11 +802,12 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
         <p class="dev-intro">Tools and research I build when a shot — or a pipeline — needs something that doesn't exist yet. Some released open source, some shipped as products.</p>
     </div>
     <div class="dev-grid">
-        <a class="dev-card dev-card-link" href="sss360.html">
+        <a class="dev-card dev-card-link dev-card-soon" href="sss360.html">
             <div class="dev-media">
                 <span class="dev-tag-os">Commercial</span>
                 <span class="dev-logo"><img src="img/sss360-logo.png" alt="SSS360 logo"></span>
                 <video src="videos/sss360-demo.mp4" autoplay loop muted playsinline preload="metadata"></video>
+                <span class="dev-soon"><span class="dev-soon-tag">Coming soon</span></span>
             </div>
             <div class="dev-body">
                 <p class="dev-sub">AI Tool · 360° Photogrammetry</p>
@@ -886,6 +887,24 @@ a,button,.nav-cv,.dev-link,.dev-back,.menu-btn,#theme-toggle{cursor:pointer!impo
 .dev-card-link:hover { border-color: var(--gray2); }
 .dev-link-cue { transition: background .3s, color .3s; }
 .dev-card-link:hover .dev-link-cue { background: var(--dark); color: var(--bg); }
+/* "Coming soon" translucent overlay (not yet available, but very soon) */
+.dev-soon {
+    position: absolute; inset: 0; z-index: 3;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(10,10,10,.42);
+    backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+    transition: background .4s ease;
+    pointer-events: none;
+}
+.dev-card-soon:hover .dev-soon { background: rgba(10,10,10,.30); }
+.dev-soon-tag {
+    font-family: var(--fh); font-size: clamp(1.8rem, 3.4vw, 2.6rem); letter-spacing: 6px;
+    text-transform: uppercase; color: rgba(255,255,255,.92);
+    padding: 18px 40px; border: 1px solid rgba(255,255,255,.4);
+    background: rgba(255,255,255,.06);
+    backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+    box-shadow: 0 6px 24px rgba(0,0,0,.35);
+}
 </style>
 
 <script>

@@ -798,7 +798,13 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
 
     <!-- TITLE FIRST -->
     <header class="proj-hero">
-        <span class="proj-logo"><img src="img/sss360-logo.png" alt="SSS360 logo"></span>
+        <div class="proj-logo-row">
+            <span class="proj-logo"><img src="img/sss360-logo.png" alt="SSS360 logo"></span>
+            <span class="proj-buy proj-buy-soon" aria-disabled="true">
+                <span class="proj-buy-label">Buy SSS360</span>
+                <span class="proj-buy-soon-tag">Coming soon</span>
+            </span>
+        </div>
         <span class="s-label">Commercial · 360° Photogrammetry</span>
         <h1 class="proj-title">SSS360</h1>
         <p class="proj-tagline">From 360° video to clean photogrammetry plates for 3D Gaussian Splatting — automatic AI masking of everything you don't want in the scan.</p>
@@ -910,11 +916,22 @@ a,button,.nav-cv,.dev-link,.dev-back,.menu-btn,#theme-toggle{cursor:pointer!impo
 /* ── SSS360 dedicated project page ─────────────── */
 .proj-page { min-height: 100vh; padding: 160px 64px 120px; max-width: 920px; margin: 0 auto; }
 .proj-hero { margin-bottom: 64px; }
+.proj-logo-row { display: flex; align-items: center; gap: 20px; margin-bottom: 28px; flex-wrap: wrap; }
 .proj-logo {
     display: inline-flex; width: 72px; height: 72px; border-radius: 16px; overflow: hidden;
-    margin-bottom: 28px; box-shadow: 0 8px 26px rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.18);
+    box-shadow: 0 8px 26px rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.18); flex-shrink: 0;
 }
 .proj-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Buy button next to the logo — not yet enabled */
+.proj-buy {
+    display: inline-flex; flex-direction: column; align-items: flex-start; gap: 3px;
+    padding: 12px 24px; border: 1px solid var(--dark); color: var(--dark);
+    transition: all .3s; line-height: 1;
+}
+.proj-buy-label { font-family: var(--fh); font-size: 1.15rem; letter-spacing: 2px; }
+.proj-buy-soon-tag { font-size: .5rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gray); }
+.proj-buy-soon { opacity: .55; border-style: dashed; cursor: default !important; }
+.proj-buy-soon:hover { background: transparent; color: var(--dark); }
 .proj-title { font-family: var(--fh); font-size: clamp(3.5rem, 9vw, 6.5rem); letter-spacing: 3px; line-height: .9; margin: 14px 0 20px; }
 .proj-tagline { color: var(--gray); font-size: 1.05rem; line-height: 1.7; max-width: 640px; margin-bottom: 28px; }
 .proj-tags { margin-top: 4px; }
