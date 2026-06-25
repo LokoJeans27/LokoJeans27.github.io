@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSS360 · Terms & Conditions | Jean Sebastián Rubio</title>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="description" content="Terms & Conditions and Refund Policy for SSS360, AI masking software for 360° photogrammetry.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://jeansebastianrubio.com/terms-sss360.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --bg:     #0a0a0a;
+    --bg2:    #111111;
+    --bg3:    #1e1e1e;
+    --dark:   #f2ede4;
+    --gray:   #888;
+    --gray2:  #555;
+    --border: rgba(255,255,255,0.08);
+    --fh:     'Bebas Neue', sans-serif;
+    --fb:     'Inter', sans-serif;
+    color-scheme: dark;
+}
+body.light {
+    --bg:     #ffffff;
+    --bg2:    #f5f5f3;
+    --bg3:    #e8e8e6;
+    --dark:   #0a0a0a;
+    --gray:   #666;
+    --gray2:  #aaa;
+    --border: rgba(0,0,0,0.08);
+    color-scheme: light;
+}
+
+html { scroll-behavior: smooth; }
+body {
+    background: var(--bg);
+    color: var(--dark);
+    font-family: var(--fb);
+    font-weight: 300;
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+a { color: inherit; }
+a, button { cursor: pointer; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--gray2); }
+
+/* ── NAV ── */
+#nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+    padding: 22px 64px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(10,10,10,.92);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+}
+body.light #nav { background: rgba(255,255,255,.92); }
+.nav-logo { font-family: var(--fh); font-size: 1.3rem; letter-spacing: 6px; color: var(--dark); }
+.nav-right { display: flex; align-items: center; gap: 22px; }
+.nav-back {
+    font-size: .62rem; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gray); transition: color .3s;
+}
+.nav-back:hover { color: var(--dark); }
+#theme-toggle {
+    background: none; border: 1px solid var(--border);
+    color: var(--gray); width: 34px; height: 34px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; transition: all .3s; flex-shrink: 0;
+}
+#theme-toggle:hover { border-color: var(--dark); color: var(--dark); }
+
+/* ── PAGE ── */
+.terms-page { max-width: 820px; margin: 0 auto; padding: 168px 64px 120px; }
+.terms-eyebrow {
+    display: flex; align-items: center; gap: 12px;
+    font-size: .58rem; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--gray); margin-bottom: 18px;
+}
+.terms-eyebrow::before { content: ''; width: 26px; height: 1px; background: var(--gray2); }
+.terms-title {
+    font-family: var(--fh); font-size: clamp(3rem, 8vw, 5.5rem);
+    letter-spacing: 3px; line-height: .9; margin-bottom: 14px;
+}
+.terms-updated {
+    font-size: .62rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gray2); margin-bottom: 64px;
+}
+
+.terms-block { margin-bottom: 44px; }
+.terms-h {
+    font-family: var(--fh); font-size: clamp(1.4rem, 3vw, 1.9rem);
+    letter-spacing: 1.5px; margin-bottom: 14px;
+    display: flex; align-items: baseline; gap: 14px;
+}
+.terms-num { font-size: .9rem; color: var(--gray2); letter-spacing: 1px; }
+.terms-p { font-size: .92rem; line-height: 1.95; color: var(--gray); }
+.terms-p strong { color: var(--dark); font-weight: 500; }
+.terms-p a { color: var(--dark); text-decoration: underline; text-underline-offset: 3px; }
+
+/* highlighted refund box */
+.terms-highlight {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-left: 2px solid #c47b6b;
+    padding: 26px 30px; margin-bottom: 44px;
+}
+.terms-highlight .terms-h { margin-bottom: 10px; }
+.terms-highlight .terms-p strong { color: var(--dark); }
+
+/* ── FOOTER ── */
+footer {
+    background: var(--bg); border-top: 1px solid var(--border);
+    padding: 28px 64px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+}
+footer p { font-size: .56rem; color: var(--gray2); letter-spacing: 2.5px; text-transform: uppercase; }
+
+@media (max-width: 760px) {
+    #nav { padding: 18px 24px; }
+    .terms-page { padding: 130px 24px 80px; }
+    footer { padding: 24px 24px; flex-direction: column; text-align: center; }
+}
+    </style>
+</head>
+<body>
+
+<nav id="nav">
+    <a href="index.html" class="nav-logo">JSR</a>
+    <div class="nav-right">
+        <a href="sss360.html" class="nav-back">← Back to SSS360</a>
+        <button id="theme-toggle" aria-label="Toggle theme"><span id="theme-icon">☀</span></button>
+    </div>
+</nav>
+
+<section class="terms-page">
+    <span class="terms-eyebrow">SSS360 · Legal</span>
+    <h1 class="terms-title">Terms &amp; Conditions</h1>
+    <p class="terms-updated">Last updated: June 24, 2026</p>
+
+    <div class="terms-block">
+        <h2 class="terms-h"><span class="terms-num">01</span> Product</h2>
+        <p class="terms-p">SSS360 is desktop software for AI-based masking of 360° photogrammetry imagery, sold by Jean Sebastián Rubio Mendez. The purchase grants a <strong>perpetual, non-exclusive license</strong> to use the software.</p>
+    </div>
+
+    <div class="terms-block">
+        <h2 class="terms-h"><span class="terms-num">02</span> License</h2>
+        <p class="terms-p">The license is valid for one (1) user and grants perpetual use of the software for a one-time price of <strong>$49 USD</strong>. You may not resell, redistribute, sublicense, or share your license key. Reverse engineering of the software is not permitted.</p>
+    </div>
+
+    <div class="terms-block">
+        <h2 class="terms-h"><span class="terms-num">03</span> Delivery</h2>
+        <p class="terms-p">The software and license key are delivered digitally, immediately after a successful payment, via download link and email.</p>
+    </div>
+
+    <div class="terms-highlight">
+        <h2 class="terms-h"><span class="terms-num">04</span> Refund Policy</h2>
+        <p class="terms-p">Because SSS360 is a digital product delivered instantly with a license key, <strong>all sales are final and non-refundable.</strong> By completing the purchase you acknowledge and accept this policy.</p>
+    </div>
+
+    <div class="terms-block">
+        <h2 class="terms-h"><span class="terms-num">05</span> Updates &amp; Support</h2>
+        <p class="terms-p">Your purchase includes free updates within the same major version. Support is provided through our community server on a best-effort basis: <a href="https://discord.gg/Y7UW7CWDug" target="_blank" rel="noopener">Discord</a>.</p>
+    </div>
+
+    <div class="terms-block">
+        <h2 class="terms-h"><span class="terms-num">06</span> Liability</h2>
+        <p class="terms-p">The software is provided "as is", without warranty of any kind. The author is not liable for any damages arising from its use.</p>
+    </div>
+
+    <div class="terms-block">
+        <h2 class="terms-h"><span class="terms-num">07</span> Contact</h2>
+        <p class="terms-p">For any questions or support, reach us through our community server: <a href="https://discord.gg/Y7UW7CWDug" target="_blank" rel="noopener">Discord</a>.</p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Jean Sebastián Rubio Mendez</p>
+    <p>VFX Compositor · Bogotá, Colombia</p>
+</footer>
+
+<script>
+const themeBtn = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+    themeIcon.textContent = '☾';
+} else {
+    themeIcon.textContent = '☀';
+}
+themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+    const isLight = document.body.classList.contains('light');
+    themeIcon.textContent = isLight ? '☾' : '☀';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+});
+</script>
+
+</body>
+</html>

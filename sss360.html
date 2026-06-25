@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSS360 — AI Masking for 360° Photogrammetry | Jean Sebastián Rubio</title>
+    <title>SSS360 · AI Masking for 360° Photogrammetry | Jean Sebastián Rubio</title>
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <meta name="description" content="SSS360 — desktop tool that uses AI segmentation to mask 360° photogrammetry footage (sky, cables, rigs, people) and auto-package clean plates for RealityCapture & 3D Gaussian Splatting.">
+    <meta name="description" content="SSS360 is a desktop tool that uses AI segmentation to mask 360° photogrammetry footage (sky, cables, rigs, people) and auto-package clean plates for RealityCapture & 3D Gaussian Splatting.">
     <meta property="og:title" content="SSS360 · AI Masking for 360° Photogrammetry">
-    <meta property="og:description" content="From 360° video to clean photogrammetry plates for 3D Gaussian Splatting — automatic AI masking of sky, power lines, rigs and people.">
+    <meta property="og:description" content="From 360° video to clean photogrammetry plates for 3D Gaussian Splatting. Automatic AI masking of sky, power lines, rigs and people.">
     <meta property="og:image" content="https://jeansebastianrubio.com/img/og-card.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Jean Sebastián Rubio — VFX Compositor & 3D Artist">
+    <meta property="og:image:alt" content="Jean Sebastián Rubio, VFX Compositor & 3D Artist">
     <meta property="og:url" content="https://jeansebastianrubio.com/sss360.html">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
@@ -802,12 +802,13 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
             <span class="proj-logo"><img src="img/sss360-logo.png" alt="SSS360 logo"></span>
             <span class="proj-buy proj-buy-soon" aria-disabled="true">
                 <span class="proj-buy-label">Buy SSS360</span>
+                <span class="proj-buy-price">$49 USD · one-time</span>
                 <span class="proj-buy-soon-tag">Coming soon</span>
             </span>
         </div>
         <span class="s-label">Commercial · 360° Photogrammetry</span>
         <h1 class="proj-title">SSS360</h1>
-        <p class="proj-tagline">From 360° video to clean photogrammetry plates for 3D Gaussian Splatting — automatic AI masking of everything you don't want in the scan.</p>
+        <p class="proj-tagline">From 360° video to clean photogrammetry plates for 3D Gaussian Splatting, with automatic AI masking of everything you don't want in the scan.</p>
         <div class="dev-tags proj-tags">
             <span class="ttag">Python</span>
             <span class="ttag">PyTorch</span>
@@ -818,18 +819,24 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
         </div>
     </header>
 
+    <!-- DEMO VIDEO -->
+    <div class="proj-video">
+        <span class="proj-video-label">Demo</span>
+        <video src="videos/sss360-demo.mp4" autoplay loop muted playsinline controls preload="metadata"></video>
+    </div>
+
     <!-- ALL THE INFORMATION -->
     <div class="proj-body">
         <div class="proj-block">
             <h2 class="proj-h">What it does</h2>
-            <p class="proj-p">SSS360 takes the equirectangular video from a 360° camera and prepares it for photogrammetry. It runs <strong>AI segmentation (SAM)</strong> on the footage to automatically detect and mask out everything that shouldn't end up in your 3D reconstruction — <strong>sky, power lines, rigs, vehicles and people</strong> — then reprojects the sphere into a set of overlapping flat views and packages them so they're ready to drop straight into RealityCapture.</p>
+            <p class="proj-p">SSS360 takes the equirectangular video from a 360° camera and prepares it for photogrammetry. It runs <strong>AI segmentation (SAM)</strong> on the footage to automatically detect and mask out everything that shouldn't end up in your 3D reconstruction, like <strong>sky, power lines, rigs, vehicles and people</strong>. It then reprojects the sphere into a set of overlapping flat views and packages them so they're ready to drop straight into RealityCapture.</p>
         </div>
 
         <div class="proj-block">
             <h2 class="proj-h">How it works</h2>
             <ol class="proj-steps">
                 <li><strong>Import &amp; pick a frame.</strong> Load the 360° video and preview any frame instantly to check framing before processing.</li>
-                <li><strong>AI masking.</strong> SAM segments each equirectangular frame, masking sky, cables, the operator and other unwanted objects — with manual control over dilation, smoothing and the nadir (bottom) cover.</li>
+                <li><strong>AI masking.</strong> SAM segments each equirectangular frame, masking sky, cables, the operator and other unwanted objects, with manual control over dilation, smoothing and the nadir (bottom) cover.</li>
                 <li><strong>Reprojection.</strong> The spherical frame is reprojected into overlapping flat views (a configurable ring + top/bottom) so RealityCapture sees clean, undistorted images.</li>
                 <li><strong>Auto-packaging.</strong> Views are batched and sized to your available RAM, with quality auto-adapted to the source resolution (up to 8K), ready for RealityCapture → 3D Gaussian Splats.</li>
             </ol>
@@ -858,7 +865,7 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
         <div class="proj-block">
             <h2 class="proj-h">Highlights</h2>
             <ul class="proj-list">
-                <li>One-click pipeline with a clean desktop GUI — no command line.</li>
+                <li>One-click pipeline with a clean desktop GUI, no command line.</li>
                 <li>Automatic sky &amp; cable removal powered by SAM segmentation.</li>
                 <li>Smart RAM-aware packaging with adjustable overlap for solid alignment.</li>
                 <li>Auto-quality based on resolution + a RealityCapture preset for street capture.</li>
@@ -867,20 +874,18 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
         </div>
     </div>
 
-    <!-- DEMO VIDEO LAST -->
-    <div class="proj-video">
-        <span class="proj-video-label">Demo</span>
-        <video src="videos/sss360-demo.mp4" autoplay loop muted playsinline controls preload="metadata"></video>
-    </div>
-
     <div class="proj-cta">
         <span class="dev-link dev-link-soon">Coming soon</span>
     </div>
+
+    <p class="proj-legal">
+        By purchasing you agree to the <a href="terms-sss360.html">Terms &amp; Conditions</a> (all sales are final &amp; non-refundable).
+    </p>
 </section>
 
 <footer>
     <p>© 2026 Jean Sebastián Rubio Mendez</p>
-    <p>VFX Compositor · Bogotá, Colombia</p>
+    <p><a href="terms-sss360.html" style="color:inherit;">Terms &amp; Conditions</a> · VFX Compositor · Bogotá, Colombia</p>
 </footer>
 
 <style>
@@ -916,7 +921,7 @@ a,button,.nav-cv,.dev-link,.dev-back,.menu-btn,#theme-toggle{cursor:pointer!impo
 /* ── SSS360 dedicated project page ─────────────── */
 .proj-page { min-height: 100vh; padding: 160px 64px 120px; max-width: 920px; margin: 0 auto; }
 .proj-hero { margin-bottom: 64px; }
-.proj-logo-row { display: flex; align-items: center; gap: 20px; margin-bottom: 28px; flex-wrap: wrap; }
+.proj-logo-row { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-bottom: 40px; flex-wrap: wrap; }
 .proj-logo {
     display: inline-flex; width: 72px; height: 72px; border-radius: 16px; overflow: hidden;
     box-shadow: 0 8px 26px rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.18); flex-shrink: 0;
@@ -924,12 +929,13 @@ a,button,.nav-cv,.dev-link,.dev-back,.menu-btn,#theme-toggle{cursor:pointer!impo
 .proj-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 /* Buy button next to the logo — not yet enabled */
 .proj-buy {
-    display: inline-flex; flex-direction: column; align-items: flex-start; gap: 3px;
-    padding: 12px 24px; border: 1px solid var(--dark); color: var(--dark);
-    transition: all .3s; line-height: 1;
+    display: inline-flex; flex-direction: column; align-items: center; gap: 4px;
+    padding: 18px 72px; border: 1px solid var(--dark); color: var(--dark);
+    transition: all .3s; line-height: 1; text-align: center;
 }
-.proj-buy-label { font-family: var(--fh); font-size: 1.15rem; letter-spacing: 2px; }
-.proj-buy-soon-tag { font-size: .5rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gray); }
+.proj-buy-label { font-family: var(--fh); font-size: 1.6rem; letter-spacing: 3px; }
+.proj-buy-price { font-size: .7rem; letter-spacing: 1.5px; color: var(--dark); font-weight: 500; margin-top: 2px; }
+.proj-buy-soon-tag { font-size: .5rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gray); margin-top: 1px; }
 .proj-buy-soon { opacity: .55; border-style: dashed; cursor: default !important; }
 .proj-buy-soon:hover { background: transparent; color: var(--dark); }
 .proj-title { font-family: var(--fh); font-size: clamp(3.5rem, 9vw, 6.5rem); letter-spacing: 3px; line-height: .9; margin: 14px 0 20px; }
@@ -957,12 +963,16 @@ a,button,.nav-cv,.dev-link,.dev-back,.menu-btn,#theme-toggle{cursor:pointer!impo
 .proj-video-label { display: block; font-size: .56rem; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 16px; }
 .proj-video video { width: 100%; display: block; border: 1px solid var(--bg3); background: #000; }
 .proj-cta { display: flex; justify-content: center; }
+.proj-legal { text-align: center; margin-top: 22px; font-size: .72rem; letter-spacing: .5px; color: var(--gray); }
+.proj-legal a { color: var(--dark); text-decoration: underline; text-underline-offset: 3px; }
 .dev-link-soon { opacity: .55; border-style: dashed; cursor: default !important; letter-spacing: 3px; }
 .dev-link-soon:hover { background: transparent; color: var(--dark); }
 @media (max-width: 760px) {
     .proj-page { padding: 120px 28px 80px; }
     .proj-feats { grid-template-columns: 1fr; gap: 24px; padding: 24px; }
     .proj-body { gap: 40px; }
+    .proj-logo-row { gap: 18px; }
+    .proj-buy { flex: 1 1 100%; padding: 16px 24px; }
 }
 </style>
 
