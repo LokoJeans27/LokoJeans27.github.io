@@ -831,7 +831,7 @@ footer p { font-size: .56rem; color: rgba(255,255,255,.28); letter-spacing: 2.5p
 
 <!-- ══ HERO ═══════════════════════════════════════ -->
 <section id="hero">
-    <video class="h-img" id="himg" autoplay muted loop playsinline poster="img/hero-vfx.jpg" preload="auto">
+    <video class="h-img" id="himg" autoplay muted loop playsinline poster="img/hero-vfx.jpg" preload="auto" controlsList="nodownload" disablepictureinpicture oncontextmenu="return false">
         <source src="videos/reel-highlight.mp4" type="video/mp4">
     </video>
     <div class="h-img-ov"></div>
@@ -1230,7 +1230,7 @@ function openModal(idx) {
         if (!vids.length) return '';
         let html = `<div class="m-video-wrap"><div class="m-video-label">VFX Breakdown</div>`;
         vids.forEach((src, i) => {
-            html += `<video class="m-video" src="${src}" controls muted playsinline preload="metadata"${i > 0 ? ' style="margin-top:10px"' : ''}></video>`;
+            html += `<video class="m-video" src="${src}" controls muted playsinline preload="metadata" controlsList="nodownload noplaybackrate" disablepictureinpicture oncontextmenu="return false"${i > 0 ? ' style="margin-top:10px"' : ''}></video>`;
         });
         html += `</div>`;
         return html;
